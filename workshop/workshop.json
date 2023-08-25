@@ -1,9 +1,6 @@
 {
     "additional-repositories": [],
     "archinstall-language": "English",
-    "audio_config": {
-        "audio": "pipewire"
-    },
     "bootloader": "Systemd-boot",
     "config_version": "2.6.0",
     "debug": false,
@@ -97,6 +94,7 @@
         "packagekit-qt5",
         "nfs-utils",
         "samba",
+        "refind",
         "firefox",
         "inkscape"
     ],
@@ -118,5 +116,16 @@
     "silent": false,
     "swap": false,
     "timezone": "America/New_York",
-    "version": "2.6.0"
+    "version": "2.6.0",
+    "superusers": {
+        "workshop": {
+            "!password": "workshop"
+        }
+    },
+    "users": {},
+    "custom-commands": [
+        "pacman -Syy --noconfirm",
+        "pacman -Syu --noconfirm",
+        "su workshop -c 'curl -Lks https://raw.githubusercontent.com/stephenhouser/arch-systems/main/workshop/setup-workshop.sh | /bin/bash"
+    ]
 }

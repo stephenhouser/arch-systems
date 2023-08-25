@@ -22,17 +22,6 @@ if [ "${USER}" != "${arch_user}" ]; then
 	fi
 fi
 
-# Get ourselves root via sudo if we are not running with sudo already...
-# if [[ "$EUID" != 0 ]]; then
-# 	ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-# 	sudo ${ABSOLUTE_PATH}
-# 	exit 1
-# fi
-
-# Full system update and upgrade to latest rolling release!
-sudo pacman -Syy --noconfirm		# update package indicies
-sudo pacman -Syu --noconfirm 		# upgrade the packages.
-
 echo ""
 echo "Unmute ALSA Audio..."
 amixer sset Master unmute
@@ -60,15 +49,15 @@ EOF
 
 # Enable automatic login to X11
 # https://wiki.archlinux.org/title/SDDM
-echo ""
-echo "Enable auto-login as ${USER}..."
-mkdir -p /etc/sddm.conf.d
-sudo cat >> /etc/sddm.conf.d/autologin.conf << EOF
-/etc/sddm.conf.d/autologin.conf
-[Autologin]
-User=workshop
-Session=workshop
-EOF
+# echo ""
+# echo "Enable auto-login as ${USER}..."
+# mkdir -p /etc/sddm.conf.d
+# sudo cat >> /etc/sddm.conf.d/autologin.conf << EOF
+# /etc/sddm.conf.d/autologin.conf
+# [Autologin]
+# User=workshop
+# Session=workshop
+# EOF
 
 # Get Pikaur
 mkdir -p ~/src
