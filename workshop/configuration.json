@@ -118,6 +118,14 @@
     "timezone": "America/New_York",
     "version": "2.6.0",
     "custom-commands": [
-        "usermod -aG wheel -s /bin/zsh workshop"
+        "usermod -aG wheel -s /bin/zsh workshop",
+        "sed -i '/workshop ALL=(ALL).*/d' /etc/sudoers",
+        "sed -i 's/# %wheel ALL=(ALL) NO/%wheel ALL=(ALL) NO/' /etc/sudoers",
+        "su workshop -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'",
+        "su workshop -c 'pikaur -Syu --noconfirm f-engrave",
+        "su workshop -c 'pikaur -Syu --noconfirm k40whisperer",
+        "su workshop -c 'pikaur -Syu --noconfirm bcnc",
+        "sed -i 's/%wheel ALL=(ALL) NO/# %wheel ALL=(ALL) NO/' /etc/sudoers",
+        "sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers"
     ]
 }
