@@ -31,13 +31,15 @@ amixer sset Speaker '100%'
 amixer sset Headphone unmute
 amixer sset Headphone '100%'
 
+mkdir -p ~/setup
+
 # Copy in dot files *after* everything else so we can overlay our
 # configs onto the default ones created above...
 echo ""
 echo "Setup dot files..."
-#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-#cd ${dir}
-rsync -avz ./skeleton/ ${HOME}
+
+git clone https://raw.githubusercontent.com/stephenhouser/arch-systems.git ~/setup/arch-systems
+rsync -avz ~/setup/arch-systems/skeleton/ ${HOME}
 
 cat >> ${HOME}/.zshrc << EOF
 alias vi=vim
@@ -60,9 +62,7 @@ EOF
 # EOF
 
 # Get Pikaur
-mkdir -p ~/src
-cd ~/src
-git clone https://github.com/actionless/pikaur.git
-cd pikaur
+git clone https://github.com/actionless/pikaur.git ~/setup/pikaur
+cd ~/setup/pikaur
 makepkg -fsri
 
