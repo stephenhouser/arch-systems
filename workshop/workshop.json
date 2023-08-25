@@ -117,14 +117,6 @@
     "swap": false,
     "timezone": "America/New_York",
     "version": "2.6.0",
-    "superusers": {
-        "workshop": {
-            "!password": "workshop"
-        }
-    },
-    "users": {
-        "workshop": {}
-    },
     "custom-commands": [
         "usermod -aG wheel -s /bin/zsh workshop",
         "sed -i '/workshop ALL=(ALL).*/d' /etc/sudoers",
