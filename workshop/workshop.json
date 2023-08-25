@@ -1,6 +1,9 @@
 {
     "additional-repositories": [],
     "archinstall-language": "English",
+    "audio_config": {
+        "audio": "pipewire"
+    },
     "bootloader": "Systemd-boot",
     "config_version": "2.6.0",
     "debug": false,
@@ -108,13 +111,12 @@
             "details": [
                 "Kde"
             ],
-            "main": "Desktop"
+            "main": "Kde"
         }
     },
     "script": "guided",
     "silent": false,
     "swap": false,
-    "audio": "pipewire",
     "timezone": "America/New_York",
     "version": "2.6.0"
 }
