@@ -60,9 +60,3 @@ EOF
 # User=workshop
 # Session=workshop
 # EOF
-
-# Get Pikaur
-git clone https://github.com/actionless/pikaur.git ~/setup/pikaur
-cd ~/setup/pikaur
-makepkg -fsri
-
