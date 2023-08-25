@@ -1,0 +1,120 @@
+{
+    "additional-repositories": [],
+    "archinstall-language": "English",
+    "bootloader": "Systemd-boot",
+    "config_version": "2.6.0",
+    "debug": false,
+    "disk_config": {
+        "config_type": "default_layout",
+        "device_modifications": [
+            {
+                "device": "/dev/sda",
+                "partitions": [
+                    {
+                        "btrfs": [],
+                        "flags": [
+                            "Boot"
+                        ],
+                        "fs_type": "fat32",
+                        "length": {
+                            "sector_size": null,
+                            "total_size": null,
+                            "unit": "MiB",
+                            "value": 512
+                        },
+                        "mount_options": [],
+                        "mountpoint": "/boot",
+                        "obj_id": "545eee0d-e7b0-4d3a-94c0-3d9d13600ce1",
+                        "start": {
+                            "sector_size": null,
+                            "total_size": null,
+                            "unit": "MiB",
+                            "value": 1
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    },
+                    {
+                        "btrfs": [],
+                        "flags": [],
+                        "fs_type": "ext4",
+                        "length": {
+                            "sector_size": null,
+                            "total_size": {
+                                "sector_size": null,
+                                "total_size": null,
+                                "unit": "B",
+                                "value": 240057409536
+                            },
+                            "unit": "Percent",
+                            "value": 100
+                        },
+                        "mount_options": [],
+                        "mountpoint": "/",
+                        "obj_id": "c084603e-fa65-4a64-a961-77f7bd90027b",
+                        "start": {
+                            "sector_size": null,
+                            "total_size": null,
+                            "unit": "MiB",
+                            "value": 513
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    }
+                ],
+                "wipe": true
+            }
+        ]
+    },
+    "hostname": "workshop",
+    "kernels": [
+        "linux"
+    ],
+    "locale_config": {
+        "kb_layout": "us",
+        "sys_enc": "UTF-8",
+        "sys_lang": "en_US"
+    },
+    "network_config": {
+        "type": "iso"
+    },
+    "no_pkg_lookups": false,
+    "ntp": true,
+    "offline": false,
+    "packages": [
+        "git",
+        "openssh",
+        "dosfstools",
+        "vim",
+        "zsh",
+        "rsync",
+        "alsa-utils",
+        "flatpak",
+        "fwupd",
+        "packagekit-qt5",
+        "nfs-utils",
+        "samba",
+        "firefox",
+        "inkscape"
+    ],
+    "parallel downloads": 0,
+    "profile_config": {
+        "gfx_driver": "All open-source",
+        "greeter": "sddm",
+        "profile": {
+            "custom_settings": {
+                "Kde": {}
+            },
+            "details": [
+                "Kde"
+            ],
+            "main": "Desktop"
+        }
+    },
+    "script": "guided",
+    "silent": false,
+    "swap": false,
+    "audio": "pipewire",
+    "timezone": "America/New_York",
+    "version": "2.6.0"
+}

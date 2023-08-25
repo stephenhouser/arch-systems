@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=F Engrave
+Exec=/home/houser/Applications/bambu-studio/bambu-studio
+Type=Application
+StartupNotify=true
+#Path=/home/houser/Applications/bambu-studio
+#Icon=/home/houser/Applications/bambu-studio/bambu-studio.webp
