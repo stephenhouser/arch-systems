@@ -123,6 +123,6 @@
         "echo 'workshop ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/01_workshop",
         "su workshop -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'",
         "su workshop -c 'pikaur -Syu --noconfirm f-engrave",
-        "su workshop -c 'pikaur -Syu --noconfirm k40whisperer",
+        "su workshop -c 'pikaur -Syu --noconfirm k40whisperer"
     ]
 }
