@@ -1,0 +1,19 @@
+#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons;Series;Language;Region;Rating
+pajama1;Pajama Sam 1: No Need to Hide When It's Dark Outside;scummvm;;;;;;;;;;;;;;;;;
+pajama2;Pajama Sam 2: Thunder and Lightning Aren't so Frightening ;scummvm;;;;;;;;;;;;;;;;;
+pajama3;Pajama Sam 3: You Are What You Eat From Your Head to Your Feet ;scummvm;;;;;;;;;;;;;;;;;
+freddi1;Freddi Fish 1: The Case of the Missing Kelp Seeds;scummvm;;;;;;;;;;;;;;;;;
+freddi2;Freddi Fish 2: The Case of the Haunted Schoolhouse;scummvm;;;;;;;;;;;;;;;;;
+freddi3;Freddi Fish 3: The Case of the Stolen Conch Shell;scummvm;;;;;;;;;;;;;;;;;
+freddi4;Freddi Fish 4: The Case of the Hogfish Rustlers of Briny Gulch;scummvm;;;;;;;;;;;;;;;;;
+freddi5;Freddi Fish 5: The Case of the Creature of Coral Cove;scummvm;;;;;;;;;;;;;;;;;
+puttputt1;Putt-Putt 1: Joins the Parade;scummvm;;;;;;;;;;;;;;;;;
+puttputt2;Putt-Putt 2: Goes to the Moon;scummvm;;;;;;;;;;;;;;;;;
+puttputt3;Putt-Putt 3: Saves the Zoo;scummvm;;;;;;;;;;;;;;;;;
+puttputt4;Putt-Putt 4:Travels Through Time;scummvm;;;;;;;;;;;;;;;;;
+puttputt5;Putt-Putt 5: Enters the Race;scummvm;;;;;;;;;;;;;;;;;
+puttputt6;Putt-Putt 6: Joins the Circus;scummvm;;;;;;;;;;;;;;;;;
+puttputt_baloon;Putt-Putt and Pep's Baloon-O-Rama;scummvm;;;;;;;;;;;;;;;;;
+puttputt_dog;Putt-Putt and Pep's Dog on a Stick;scummvm;;;;;;;;;;;;;;;;;
+puttputt_funshop;Putt-Putt's One-stop Fun Shop;scummvm;;;;;;;;;;;;;;;;;
+puttputt_funpack;Putt-Putt's Fun Pack;scummvm;;;;;;;;;;;;;;;;;

@@ -1,0 +1,2 @@
+#!/bin/bash
+DAPHNE_USER=~/daphne /usr/bin/daphne $*

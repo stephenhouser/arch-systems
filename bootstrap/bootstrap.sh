@@ -52,33 +52,18 @@
 
 # MacMini, UEFI, SSD, wired and wireless, wipe and use entire drive
 # broadcom-wl-dkms 	-- Mac mini wireless driver
-hostname=mini-mame
-disk=/dev/sda
-fstype=f2fs
-wire_net=enp1s0f0
-configure_wifi=true
-wifi_net=wlp2s0
-wifi_ssid="houser"
-wifi_psk="wpa-pre-shared-key"
-system_packages="broadcom-wl-dkms "
-# rootpass=super
-user=houser
-# password=mame
-
-# MacMini, UEFI, SSD, wired and wireless, wipe and use entire drive
-# broadcom-wl-dkms 	-- Mac mini wireless driver
-hostname=workshop
-disk=/dev/sda
-fstype=f2fs
-wire_net=enp1s0f0
-configure_wifi=true
-wifi_net=wlp2s0
-wifi_ssid="houser"
-wifi_psk="wpa-pre-shared-key"
-system_packages="broadcom-wl-dkms "
-rootpass=root-password
-user=workshop
-password=workshop-password
+# hostname=mini-mame
+# disk=/dev/sda
+# fstype=f2fs
+# wire_net=enp1s0f0
+# configure_wifi=true
+# wifi_net=wlp2s0
+# wifi_ssid="houser"
+# wifi_psk="wpa-pre-shared-key"
+# system_packages="broadcom-wl-dkms "
+# # rootpass=super
+# user=houser
+# # password=mame
 
 # KidsMAME-1, BIOS, HDD, wired and wireless, use existing partitions
 # hostname=kids-mame-1

@@ -1,0 +1,4 @@
+#!/bin/bash
+game=$1
+shift
+exec /usr/bin/retroarch -L /usr/lib/libretro/scummvm_libretro.so ~/scummvm/games/${game}/${game}.scummvm $*

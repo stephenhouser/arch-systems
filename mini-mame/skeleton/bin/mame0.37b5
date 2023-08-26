@@ -1,0 +1,4 @@
+#!/bin/bash
+game=$1
+shift
+exec /usr/bin/retroarch -L /usr/lib/libretro/mame2000_libretro.so ~/mame0.37b5/roms/${game} $*

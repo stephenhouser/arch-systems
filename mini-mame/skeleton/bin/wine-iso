@@ -1,0 +1,75 @@
+#!/bin/bash
+# Run a Wine-based game from an ISO image, 
+#	changing screen resolution as needed.
+#
+# Syntax:
+# 	wine-game.sh image.iso app.exe
+#		- image.iso is the absolute path to the ISO image to run from
+#		- app.exe is the MS-DOS absolute path to execute in Wine.
+game_list="
+#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons;Series;Language;Region;Rating
+
+Game name:ISO Image:exe file:resolution
+pajama:Pajama Sam 1.iso:pajama.exe:640x480
+pajama2:Pajama Sam 2.iso:pajama2.exe:640x480
+pajama3:Pajama Sam 3.iso:pajama3.exe:640x480
+pajama4:Pajama Sam 4.iso:pajama4.exe:640x480
+freddie:Freddie Fish 1.iso:freddie.exe:640x480
+freddie2:Freddie Fish 2.iso:freddi2.exe:640x480
+freddie3:Freddie Fish 3.iso:freddi3.exe:640x480
+freddie4:Freddie Fish 4.iso:freddi4.exe:640x480
+freddie5:Freddie Fish 5.iso:freddi5.exe:640x480
+"
+game_path="/media/windows/Games/Windows"
+wine_drive="g:"
+
+game=$1
+game_line=$(echo "${game_list}" | grep "^${game}:")
+if [ -z "${game_line}" ]; then
+	game_line=$(echo "${game_list}" | grep ":${game}:")
+fi
+
+if [ -z "${game_line}" ]; then
+	echo "ERROR: Game [${game}] not found."
+	exit 1
+fi
+
+iso_file=$(echo "${game_line}" | cut -d: -f2)
+exe_file=$(echo "${game_line}" | cut -d: -f3)
+display_mode=$(echo "${game_line}" | cut -d: -f4)
+
+
+mapped_drive=~/.wine/dosdevices/${wine_drive}
+
+# Unmount or otherwise remove any old mounted drive
+if mount | grep ${mapped_drive} > /dev/null; then
+	umount ${mapped_drive}
+fi
+if [ ! -d ${mapped_drive} ]; then
+	mkdir -p ${mapped_drive}
+fi
+
+# Mount ISO image to Wine Drive
+iso_path=${game_path}/${iso_file}
+if [ -f "${iso_path}" ]; then
+	fuseiso "${iso_path}" ${mapped_drive}
+
+	exe_path=${mapped_drive}/${exe_file}
+	if [ -f ${exe_path} ]; then
+		# Change screen to resolution for game...
+		active_output=$(xrandr -q | sed -n 's/^\(.*\)\( connected.*\)$/\1/p')
+		xrandr --output ${active_output} --mode ${display_mode}
+		# Start the game in wine...
+		/usr/bin/wine "${wine_drive}${app_path}"
+		# Restore to preferred mode/resolution
+		xrandr --output ${active_output} --auto
+	else
+		echo "ERROR: Executable file [${exe_path}] does not exist."
+	fi
+
+	# Unmount the ISO Image
+	fusermount -u ${mapped_drive}
+else
+	echo "ERROR: ISO file [${iso_path}] does not exist."
+fi
+

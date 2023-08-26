@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=F-Engrave
+Exec=/usr/bin/f-engrave
+Type=Application
+StartupNotify=true
+Icon=/usr/share/icons/f-engrave.icns

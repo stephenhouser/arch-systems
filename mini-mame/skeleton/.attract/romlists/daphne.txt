@@ -1,0 +1,23 @@
+#Name;Title;Emulator;CloneOf;Year;Manufacturer;Category;Players;Rotation;Control;Status;DisplayCount;DisplayType;AltRomname;AltTitle;Extra;Buttons;Series;Language;Region;Rating
+ace;Space Ace;daphne;;1984;Advanced Microcomputer Systems;;;;;;;;;;;;;;
+ace91;Space Ace '91;daphne;;1991;Advanced Microcomputer Systems;;;;;;;;;;;;;;
+astron;Astron Belt;daphne;;;;;;;;;;;;;;;;;
+badlands;Badlands;daphne;;;;;;;;;;;;;;;;;
+bega;Bega's Battle;daphne;;;;;;;;;;;;;;;;;
+#blazer;Star Blazer;daphne;;;;;;;;;;;;;;;;;
+cliff;Cliff Hanger;daphne;;;;;;;;;;;;;;;;;
+#cobra;Cobra Command;daphne;;;;;;;;;;;;;;;;;
+#dle11;Dragon's Lair v1.1;daphne;;;;;;;;;;;;;;;;;
+#dle21;Dragon's Lair v2.1;daphne;;;;;;;;;;;;;;;;;
+#esh;Esh's Aurunmilla;daphne;;;;;;;;;;;;;;;;;
+#galaxy;Galaxy Ranger;daphne;;;;;;;;;;;;;;;;;
+#gpworld;GP World;daphne;;;;;;;;;;;;;;;;;
+#interstellar;Interstellar;daphne;;;;;;;;;;;;;;;;;
+lair;Dragon's Lair;daphne;;1983;Advanced Microcomputer Systems;Laserdisc;;;;;;;;;;;;;
+lair2;Dragon's Lair 2;daphne;;1991;Leeland Corporation;;;;;;;;;;;;;;
+mach3;Mach 3;daphne;;;;;;;;;;;;;;;;;
+#roadblaster;Road Blaster;daphne;;;;;;;;;;;;;;;;;
+sae;Space Ace Enhancement;daphne;;;;;;;;;;;;;;;;;
+#sdq;Super Don Quix-ote;daphne;;;;;;;;;;;;;;;;;
+tq;Thayer's Quest;daphne;;1984;Advanced Microcomputer Systems;;;;;;;;;;;;;;
+uvt;Us vs Them;daphne;;;;;;;;;;;;;;;;;

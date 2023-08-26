@@ -1,0 +1,4 @@
+#!/bin/bash
+game=$1
+shift
+exec /usr/bin/retroarch -L /usr/lib/libretro/fbneo_libretro.so ~/fbneo/arcade/${game} $*
