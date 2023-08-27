@@ -35,11 +35,11 @@ package() {
   mkdir -p ${pkgdir}/usr/lib
   cp -r K40_Whisperer-${pkgver}_src ${pkgdir}/usr/lib/${pkgname}
 
-  install -D -m755 "{$srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+  install -D -m755 "${srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -D -m644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install -D -m644 "${srcdir}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"    
 
-  install -D -m644 "{$srcdir}/${pkgname}.rules" "${pkgdir}/etc/udev/rules.d/97-${pkgname}.rules"
+  install -D -m644 "${srcdir}/${pkgname}.rules" "${pkgdir}/etc/udev/rules.d/97-${pkgname}.rules"
 }
 
 post_install() {
