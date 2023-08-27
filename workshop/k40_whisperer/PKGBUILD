@@ -34,7 +34,7 @@ package() {
 
   mkdir -p ${pkgdir}/usr/bin
   cat > "${pkgdir}/usr/bin/${pkgname}" <<EOF
-#!/usr/bin/env bash"
+#!/usr/bin/env bash
 python /usr/lib/${pkgname}/k40_whisperer.py
 EOF
   chmod +x "${pkgdir}/usr/bin/${pkgname}"
