@@ -33,10 +33,16 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 
 arch-chroot /mnt systemctl enable sddm.service
 
+# Enable sudo w/o password to install
+echo "workshop ALL=(ALL) NOPASSWD: ALL" > /mnt/etc/sudoers.d/01_workshop
+
 arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
 arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
 arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
 arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
+
+# Replace with sudo with password
+echo "workshop ALL=(ALL) ALL" > /mnt/etc/sudoers.d/01_workshop"
 
 # clone repo 
 # copy `share` to `/usr/share`
