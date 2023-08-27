@@ -364,8 +364,8 @@ arch-chroot /mnt systemctl enable sshd.service
 
 echo ""
 echo "Setting up accounts..."
-# change sudoers file so wheel can run
-echo "%wheel ALL=(ALL) ALL" >> /mnt/etc/sudoers
+# change sudoers file so wheel group can run admin programs
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
 # Root password
 echo "root:$rootpass" | chpasswd --root /mnt

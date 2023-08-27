@@ -1,0 +1,37 @@
+# Maintainer: Stephen Houser <stephenhouser@gmail.com>
+pkgname=f-engrave
+pkgver=1.75
+pkgrel=1
+pkgdesc="Supports Engraving and V-Carving"
+url="http://www.scorchworks.com/Fengrave/fengrave.html"
+arch=('x86_64')
+license=('GPLv3')
+makedepends=('dos2unix')
+depends=('python' 'python-pyclipper')
+source=(http://www.scorchworks.com/Fengrave/F-Engrave-${pkgver}_src.zip arch.patch)
+md5sums=('2f3e6c72cfd97984a9bd330885616321'
+         '0024e18a0fd00d5fd455b783264e6923')
+
+prepare() {
+  cd F-Engrave-${pkgver}_src
+  patch < ../arch.patch
+  dos2unix ${pkgname}.py
+}
+
+build() {
+  cd F-Engrave-${pkgver}_src/TTF2CXF_STREAM
+  make
+}
+
+package() {
+  cd ${srcdir}
+  install -D -m644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  install -D -m644 "${pkgname}.ico" "${pkgdir}/usr/share/pixmaps/${pkgname}.ico"
+
+  cd F-Engrave-${pkgver}_src
+  install -Dm755 ${pkgname}.py "$pkgdir/usr/bin/${pkgname}"
+  cd TTF2CXF_STREAM
+  install -Dm755 ttf2cxf_stream "$pkgdir/usr/bin/ttf2cxf_stream"
+
+
+}

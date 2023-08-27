@@ -35,12 +35,15 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 arch-chroot /mnt systemctl enable sddm.service
 
 # Enable sudo w/o password to install
-sed -i "s/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
+sed -i 's/%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
 arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
 arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
 arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
-arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
+
+# 2023-08-27: bCNC and bCNC-git are broken in AUR 
+# arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 
 # clone repo 
 # copy `share` to `/usr/share`
@@ -69,5 +72,6 @@ MaximumUid=65536
 MinimumUid=1000
 EOF
 
-# Remove nopassword sudoer
+# Remove nopassword sudoer for wheel, revert
 sed -i "s/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
+sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
