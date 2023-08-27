@@ -109,7 +109,7 @@ base_packages="
 	pkgfile libnewt
 	man-db man-pages
 	zsh grml-zsh-config
-	sudo vim vi-vim-symlink git screen rsync
+	sudo vim git screen rsync
 "
 
 set -uo pipefail
@@ -334,9 +334,9 @@ if [ "${configure_wifi}" = true ]; then
 	# fi
 
 	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf << EOF
-ctrl_interface=/run/wpa_supplicant
-update_config=1
-
+# allow frontend (e.g., wpa_cli) to be used by all users in 'wheel' group
+ctrl_interface=/var/run/wpa_supplicant 
+ctrl_interface_group=wheel
 network={
 	ssid="${wifi_ssid}"
 	psk="${wifi_psk}"
@@ -394,6 +394,9 @@ else
 	arch-chroot /mnt grub-install ${disk}
 	arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 fi
+
+# Link vi to vim
+arch-chroot /mnt ln -s /usr/bin/vim /usr/bin/vi
 
 # echo ""
 # echo "Unmounting..."
