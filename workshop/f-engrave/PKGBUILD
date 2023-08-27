@@ -10,11 +10,11 @@ makedepends=('dos2unix')
 depends=('python' 'python-pyclipper')
 source=(http://www.scorchworks.com/Fengrave/F-Engrave-${pkgver}_src.zip 
 		f-engrave.desktop
-		f-engrave.ico
+		f-engrave.png
 		arch.patch)
 md5sums=('2f3e6c72cfd97984a9bd330885616321'
 		 'bf27a8f9014fae88bff00ccc112d226d'
-		 '7d53f52b1ebd61d2c5092ff68e9210ca'
+		 'c94db9bfe108173355079e4183b6fb7c'
          '51476b9d534f25abf233dab176c3c476')
 
 prepare() {
