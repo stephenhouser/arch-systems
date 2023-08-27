@@ -327,11 +327,11 @@ DHCP=yes
 EOF
 
 if [ "${configure_wifi}" = true ]; then
-	if [ -z ${wifi_psk+x} ]; then
-		wpa_pass_line="password=\"${wifi_password}\""
-	else
-		wpa_pass_line="psk=\"${wifi_psk}\""
-	fi
+	# if [ -z ${wifi_psk+x} ]; then
+	# 	wpa_pass_line="password=\"${wifi_password}\""
+	# else
+	# 	wpa_pass_line="psk=\"${wifi_psk}\""
+	# fi
 
 	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf << EOF
 ctrl_interface=/run/wpa_supplicant
@@ -339,7 +339,7 @@ update_config=1
 
 network={
 	ssid="${wifi_ssid}"
-	${wpa_pass_line}
+	psk="${wifi_psk}"
 }
 EOF
 
