@@ -29,12 +29,11 @@ build() {
 }
 
 package() {
-  cd ${srcdir}
-  install -D -m644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-  install -D -m644 "${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
-
   cd F-Engrave-${pkgver}_src
   install -Dm755 ${pkgname}.py "$pkgdir/usr/bin/${pkgname}"
   cd TTF2CXF_STREAM
   install -Dm755 ttf2cxf_stream "$pkgdir/usr/bin/ttf2cxf_stream"
+
+  install -D -m644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  install -D -m644 "${srcdir}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
 }

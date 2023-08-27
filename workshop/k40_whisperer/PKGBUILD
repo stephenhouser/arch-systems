@@ -40,7 +40,10 @@ EOF
   chmod +x "${pkgdir}/usr/bin/${pkgname}"
 
   mkdir -p ${pkgdir}/etc/udev/rules.d
-  cp 97-k40_whisperer.rules ${pkgdir}/etc/udev/rules.d/
+  cp "{$srcdir}97-k40_whisperer.rules" "${pkgdir}/etc/udev/rules.d/"
+
+  install -D -m644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  install -D -m644 "${srcdir}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"    
 }
 
 post_install() {

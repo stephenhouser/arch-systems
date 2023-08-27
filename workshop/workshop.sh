@@ -82,6 +82,16 @@ MaximumUid=65536
 MinimumUid=1000
 EOF
 
+# Copy user skeleton
+tar cf - --strip-components=2 ./skeleton/  | arch-chroot /mnt su ${user} -c 'tar xf -'
+
+
 # Remove nopassword sudoer for wheel, revert
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
+
+# ~/.config/plasma-org.ked.plasma.desktop-appletsrc
+# [Containments][2][Applets][5][Configuration][General]
+#launchers=
+#	applications:org.kde.konsole.desktop
+#	applicationsLf-engrave.desktop
