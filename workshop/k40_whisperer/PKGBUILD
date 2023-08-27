@@ -12,7 +12,7 @@ license=("GPL")
 depends=("python" "python-lxml" "python-pyusb" "python-pillow" "python-pyclipper" "tk")
 makedepends=("unzip" "dos2unix")
 source=(
-  "http://www.scorchworks.com/K40whisperer/K40_Whisperer-${pkgver}_src.zip "
+  "https://www.scorchworks.com/K40whisperer/K40_Whisperer-${pkgver}_src.zip "
   "97-k40_whisperer.rules"
   "k40_whisperer.desktop"
 )
@@ -22,8 +22,6 @@ md5sums=(
   "a4d3e6b05115a226b87ffeda830a27d5"
 )
 
-_pkgfile="K40_Whisperer-${pkgver}_src"
-
 build() {
   cd ${_pkgfile}
   dos2unix k40_whisperer.py
@@ -32,7 +30,7 @@ build() {
 
 package() {
   mkdir -p ${pkgdir}/usr/lib
-  cp -r ${_pkgfile} ${pkgdir}/usr/lib/${pkgname}
+  cp -r K40_Whisperer-${pkgver}_src ${pkgdir}/usr/lib/${pkgname}
 
   mkdir -p ${pkgdir}/usr/bin
   ln -sf /usr/lib/${pkgname}/k40_whisperer.py ${pkgdir}/usr/bin/${pkgname}
