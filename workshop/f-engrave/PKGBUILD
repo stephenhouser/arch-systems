@@ -13,7 +13,7 @@ source=(http://www.scorchworks.com/Fengrave/F-Engrave-${pkgver}_src.zip
 		f-engrave.png
 		arch.patch)
 md5sums=('2f3e6c72cfd97984a9bd330885616321'
-         '85d3660c6e183f603f3d7180227299f3'
+         'dd45c3da9c91cd49c8bc721c1f323459'
          'c94db9bfe108173355079e4183b6fb7c'
          '51476b9d534f25abf233dab176c3c476')
 

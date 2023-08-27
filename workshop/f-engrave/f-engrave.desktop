@@ -8,5 +8,5 @@ Keywords=CNC;
 Comment=F-Engrave CNC V-Carve Controller
 Exec=/usr/bin/f-engrave
 Icon=/usr/share/pixmaps/f-engrave.png
-Terminal=true
+Terminal=false
 StartupNotify=false

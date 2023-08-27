@@ -11,8 +11,9 @@ license=(GPL2)
 depends=(python python-setuptools python-pyserial python-pillow tk)
 makedepends=('git')
 provides=("${pkgname%}")
-source=("git+https://github.com/vlachoudis/bCNC.git")
-md5sums=('SKIP')
+source=("git+https://github.com/vlachoudis/bCNC.git" bCNC.desktop)
+md5sums=('SKIP'
+         'eb1e3a2269f1ac79ca6759cd45fbc735')
 
 pkgver() {
     cd "${srcdir}/${pkgname}"
