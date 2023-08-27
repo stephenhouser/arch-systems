@@ -18,7 +18,6 @@
 #-- configure_wifi=false
 #-- wifi_net=wlp2s0
 #-- wifi_ssid=wifi
-#-- wifi_pass=password
 #-- wifi_psk="psk"
 #-- system_packages <-- include a space after each item!
 #-- rootpass=super
@@ -170,9 +169,9 @@ if [ "${configure_wifi}" = true ]; then
 		: ${wifi_ssid:?"WiFi ssid cannot be empty"}
 	fi
 
-	if [ -z ${wifi_password+x} ]; then
-		wifi_password=$(whiptail --passwordbox "Enter WiFi password" 10 50 3>&1 1>&2 2>&3) || exit 1
-		: ${wifi_password:?"WiFi password cannot be empty"}
+	if [ -z ${wifi_psk+x} ]; then
+		wifi_psk=$(whiptail --passwordbox "Enter WiFi password" 10 50 3>&1 1>&2 2>&3) || exit 1
+		: ${wifi_psk:?"WiFi password cannot be empty"}
 	fi
 fi
 
@@ -232,7 +231,6 @@ wire_net=${wire_net}
 configure_wifi=${configure_wifi}
 wifi_net=${wifi_net:-"--unset--"}
 wifi_ssid=${wifi_ssid:-"--unset--"}
-wifi_pass=${wifi_password:-"--unset--"}
 wifi_psk=${wifi_psk:-"--unset--"}
 EOF
 
@@ -327,12 +325,6 @@ DHCP=yes
 EOF
 
 if [ "${configure_wifi}" = true ]; then
-	# if [ -z ${wifi_psk+x} ]; then
-	# 	wpa_pass_line="password=\"${wifi_password}\""
-	# else
-	# 	wpa_pass_line="psk=\"${wifi_psk}\""
-	# fi
-
 	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf << EOF
 # allow frontend (e.g., wpa_cli) to be used by all users in 'wheel' group
 ctrl_interface=/var/run/wpa_supplicant 
