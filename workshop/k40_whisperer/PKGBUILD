@@ -33,8 +33,11 @@ package() {
   cp -r K40_Whisperer-${pkgver}_src ${pkgdir}/usr/lib/${pkgname}
 
   mkdir -p ${pkgdir}/usr/bin
-  ln -sf /usr/lib/${pkgname}/k40_whisperer.py ${pkgdir}/usr/bin/${pkgname}
-  chmod +x ${pkgdir}/usr/bin/${pkgname}
+  cat > "${pkgdir}/usr/bin/${pkgname}" <<EOF
+#!/usr/bin/env bash"
+python /usr/lib/${pkgname}/k40_whisperer.py
+EOF
+  chmod +x "${pkgdir}/usr/bin/${pkgname}"
 
   mkdir -p ${pkgdir}/etc/udev/rules.d
   cp 97-ctc-lasercutter.rules ${pkgdir}/etc/udev/rules.d/
