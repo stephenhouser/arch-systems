@@ -40,7 +40,7 @@ EOF
   chmod +x "${pkgdir}/usr/bin/${pkgname}"
 
   mkdir -p ${pkgdir}/etc/udev/rules.d
-  cp 97-ctc-lasercutter.rules ${pkgdir}/etc/udev/rules.d/
+  cp 97-k40_whisperer.rules ${pkgdir}/etc/udev/rules.d/
 }
 
 post_install() {
