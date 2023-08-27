@@ -85,7 +85,6 @@
 # linux-headers 		-- allows building and dynamic build kernel modules
 # intel-ucide 			-- indel microcode updates
 # base base-devel 		-- base GNU/Linux and development tools
-# dhcpcd				-- DHCP Client
 # e2fsprogs				-- ext based file systems
 # exfatprogs			-- MS-DOS FAT based file systems
 # dosfstools			-- MS-DOS FAT based file systems
@@ -105,12 +104,12 @@
 base_packages="
 	linux linux-firmware linux-headers intel-ucode
 	base base-devel
-	dhcpcd openssh
+	openssh
 	e2fsprogs exfatprogs f2fs-tools dosfstools ntfs-3g
 	pkgfile libnewt
 	man-db man-pages
 	zsh grml-zsh-config
-	sudo vim git screen rsync
+	sudo vim vi-vim-symlink git screen rsync
 "
 
 set -uo pipefail
@@ -321,32 +320,20 @@ echo ""
 echo "Setting up network..."
 cat >> /mnt/etc/systemd/network/10-${wire_net}.network << EOF
 [Match]
-${wire_net}
+Name=${wire_net}
 
 [Network]
 DHCP=yes
 EOF
 
 if [ "${configure_wifi}" = true ]; then
-	cat >> /mnt/etc/systemd/network/20-${wifi_net}.network << EOF
-[Match]
-${wifi_net}
-
-[Network]
-DHCP=yes
-
-[DHCP]
-RouteMetric=20
-EOF
-
 	if [ -z ${wifi_psk+x} ]; then
 		wpa_pass_line="password=\"${wifi_password}\""
 	else
 		wpa_pass_line="psk=\"${wifi_psk}\""
 	fi
 
-	# wifi working
-	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant.conf << EOF
+	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf << EOF
 ctrl_interface=/run/wpa_supplicant
 update_config=1
 
@@ -356,13 +343,15 @@ network={
 }
 EOF
 
-	arch-chroot /mnt ln -s /usr/share/dhcpcd/hooks/10-wpa_supplicant /usr/lib/dhcpcd/dhcpcd-hooks/
-	arch-chroot /mnt systemctl enable wpa_supplicant.service
+	#arch-chroot /mnt systemctl enable wpa_supplicant.service
+	arch-chroot /mnt systemctl enable wpa_supplicant@wifi_net.service
 fi
 
 # enable network services...
 arch-chroot /mnt systemctl enable systemd-networkd.service
-arch-chroot /mnt systemctl enable dhcpcd.service
+# Don't wait for the network to boot
+arch-chroot /mnt systemctl disable systemd-networkd-wait-online.service
+
 arch-chroot /mnt systemctl enable sshd.service
 
 echo ""
