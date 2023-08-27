@@ -43,21 +43,17 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 
 # F-Engrave
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/f-engrave; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/f-engrave; makepkg -si --noconfirm'
 
 # K40 Whisperer
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
 
 # bCNC
 #arch-systems.git; cd /tmp/arch-systems/workshop/bCNC; makepkg -si --noconfirm'
 # 2023-08-27: bCNC and bCNC-git are broken in AUR 
 # arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
-#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/bCNC; makepkg -si --noconfirm'
-
-# clone repo 
-# copy `share` to `/usr/share`
-# copy skeleton to home
+#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/bCNC; makepkg -si --noconfirm'
 
 # set greeter theme
 # set autologin to workshop
@@ -82,16 +78,10 @@ MaximumUid=65536
 MinimumUid=1000
 EOF
 
-# Copy user skeleton
-tar cf - --strip-components=2 ./skeleton/  | arch-chroot /mnt su ${user} -c 'tar xf -'
-
-
 # Remove nopassword sudoer for wheel, revert
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
-# ~/.config/plasma-org.ked.plasma.desktop-appletsrc
-# [Containments][2][Applets][5][Configuration][General]
-#launchers=
-#	applications:org.kde.konsole.desktop
-#	applicationsLf-engrave.desktop
+# Copy user skeleton, setting up desktop, screen background, etc.
+arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop; rsync -av ./skeleton/ ~${user}'
+
