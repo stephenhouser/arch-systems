@@ -1,0 +1,39 @@
+# Maintainer: Stephen Houser <stephenhouser@gmail.com>
+# Maintainer: h8red <h8red@yandex.ru>
+# Maintainer: Grey Christoforo <first name at last name dot net>
+pkgname=bCNC
+pkgver=1.0
+pkgrel=1
+pkgdesc="GRBL CNC command sender, autoleveler and g-code editor"
+arch=('any')
+url="https://github.com/vlachoudis/bCNC"
+license=(GPL2)
+depends=(python python-pyserial python-pillow tk)
+makedepends=('git')
+provides=("${pkgname%}")
+source=("git+https://github.com/vlachoudis/bCNC.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd "${srcdir}/${pkgname}"
+    printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git describe --always)"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+  python setup.py build
+}
+
+package() {
+  cd "${srcdir}/${pkgname}"
+  python setup.py install --root="${pkgdir}" --optimize=1 --skip-build
+  install -D -m644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  install -D -m644 "${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
+  
+  mkdir -p "${pkgdir}/usr/bin"
+  echo "#!/usr/bin/env bash" > "${pkgdir}/usr/bin/${pkgname}"
+  echo "python -m ${pkgname}" > "${pkgdir}/usr/bin/${pkgname}"
+  chmod +x "${pkgdir}/usr/bin/${pkgname}"
+}
+
+

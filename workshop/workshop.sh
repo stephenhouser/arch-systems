@@ -29,7 +29,8 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	plasma konsole kcalc \
 	flatpak fwupd packagekit-qt5 \
 	nfs-utils samba refind \
-	firefox inkscape
+	firefox inkscape \
+	python-pip
 
 arch-chroot /mnt systemctl enable sddm.service
 
@@ -44,8 +45,29 @@ arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 # clone repo 
 # copy `share` to `/usr/share`
 # copy skeleton to home
+
 # set greeter theme
 # set autologin to workshop
+mkdir -p /mnt/etc/sddm.conf.d
+cat > /mnt/etc/sddm.conf.d/kde_settings.conf << EOF
+[Autologin]
+Relogin=false
+User=workshop
+Session=plasma
+
+[General]
+HaltCommand=/usr/bin/systemctl poweroff
+RebootCommand=/usr/bin/systemctl reboot
+
+[Theme]
+Current=breeze
+CursorTheme=breeze_cursors
+Font=Noto Sans,10,-2,0,50,0,0,0,0,0
+
+[Users]
+MaximumUid=65536
+MinimumUid=1000
+EOF
 
 # Remove nopassword sudoer
 sed -i "s/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
