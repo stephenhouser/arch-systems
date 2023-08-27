@@ -12,7 +12,7 @@ license=("GPL")
 depends=("python" "python-lxml" "python-pyusb" "python-pillow" "python-pyclipper" "tk")
 makedepends=("unzip" "dos2unix")
 source=(
-  "http://www.scorchworks.com/Fengrave/K40_Whisperer-${pkgver}_src.zip "
+  "http://www.scorchworks.com/K40whisperer/K40_Whisperer-${pkgver}_src.zip "
   "97-k40_whisperer.rules"
   "k40_whisperer.desktop"
 )
