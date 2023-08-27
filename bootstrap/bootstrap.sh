@@ -157,20 +157,23 @@ if [ -z ${configure_wifi+x} ]; then
 	configure_wifi=false
 	if whiptail --yesno "Configure WiFi?" 0 0; then
 		configure_wifi=true
-		if [ -z ${wifi_net+x} ]; then
-			wifi_net=$(whiptail --menu "Select wireless network device" 10 50 0 "${netdevices[@]}" 3>&1 1>&2 2>&3) || exit 1
-			: ${wifi_net:?"Wireless network device cannot be empty"}
-		fi
+	fi
+fi
 
-		if [ -z ${wifi_ssid+x} ]; then
-			wifi_ssid=$(whiptail --inputbox "Enter WiFi ssid" 10 50 3>&1 1>&2 2>&3) || exit 1
-			: ${wifi_ssid:?"WiFi ssid cannot be empty"}
-		fi
+if [ "${configure_wifi}" = true ]; then
+	if [ -z ${wifi_net+x} ]; then
+		wifi_net=$(whiptail --menu "Select wireless network device" 10 50 0 "${netdevices[@]}" 3>&1 1>&2 2>&3) || exit 1
+		: ${wifi_net:?"Wireless network device cannot be empty"}
+	fi
 
-		if [ -z ${wifi_password+x} ]; then
-			wifi_password=$(whiptail --passwordbox "Enter WiFi password" 10 50 3>&1 1>&2 2>&3) || exit 1
-			: ${wifi_password:?"WiFi password cannot be empty"}
-		fi
+	if [ -z ${wifi_ssid+x} ]; then
+		wifi_ssid=$(whiptail --inputbox "Enter WiFi ssid" 10 50 3>&1 1>&2 2>&3) || exit 1
+		: ${wifi_ssid:?"WiFi ssid cannot be empty"}
+	fi
+
+	if [ -z ${wifi_password+x} ]; then
+		wifi_password=$(whiptail --passwordbox "Enter WiFi password" 10 50 3>&1 1>&2 2>&3) || exit 1
+		: ${wifi_password:?"WiFi password cannot be empty"}
 	fi
 fi
 
