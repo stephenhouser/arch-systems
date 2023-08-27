@@ -31,6 +31,7 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	nfs-utils samba refind \
 	firefox inkscape \
 	unzip wget \
+	${system_packages}
 
 arch-chroot /mnt systemctl enable sddm.service
 
