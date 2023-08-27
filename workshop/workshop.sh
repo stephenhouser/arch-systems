@@ -30,7 +30,7 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	flatpak fwupd packagekit-qt5 \
 	nfs-utils samba refind \
 	firefox inkscape \
-	python-pip
+	unzip wget \
 
 arch-chroot /mnt systemctl enable sddm.service
 

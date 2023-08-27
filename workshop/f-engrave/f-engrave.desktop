@@ -1,6 +1,12 @@
 [Desktop Entry]
 Name=F-Engrave
-Exec=/usr/bin/f-engrave
+Name[en_US]=F-Engrave
+Version=1.75
 Type=Application
-StartupNotify=true
+Categories=Science;Electronics;Engineering
+Keywords=CNC;
+Comment=F-Engrave CNC V-Carve Controller
+Exec=/usr/bin/f-engrave
 Icon=/usr/share/pixmaps/f-engrave.png
+Terminal=true
+StartupNotify=false

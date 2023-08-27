@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=K40 Wisperer
-Exec=/usr/bin/k40whisperer
-Type=Application
-StartupNotify=true
-Icon=/usr/share/icons/k40whisperer.png

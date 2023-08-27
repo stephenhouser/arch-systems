@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=K40 Whisperer
+Name[en_US]=K40 Whisperer
+Version=0.64
+Type=Application
+Categories=Science;Electronics;Engineering
+Keywords=CNC;Laser;
+Comment=K40 Whisperer Laser Engraver Controller
+Exec=/usr/bin/k40_whisperer
+Terminal=true
+StartupNotify=false

@@ -1,0 +1,48 @@
+# Maintainer: Stephen Houser <stephenhouser@gmail.com>
+# Unofficial package for K40 Whisperer
+# Maintainer: Nat Lasseter <aur at 4574 dot co dot uk>
+
+pkgname="k40_whisperer"
+pkgver="0.64"
+pkgrel="1"
+pkgdesc="Control software for the stock K40 Laser controller"
+arch=("any")
+url="https://www.scorchworks.com/K40whisperer/k40whisperer.html"
+license=("GPL")
+depends=("python" "python-lxml" "python-pyusb" "python-pillow" "python-pyclipper" "tk")
+makedepends=("unzip" "dos2unix")
+source=(
+  "http://www.scorchworks.com/Fengrave/K40_Whisperer-${pkgver}_src.zip "
+  "97-k40_whisperer.rules"
+  "k40_whisperer.desktop"
+)
+md5sums=(
+  "12b4cf581e02ca65f773b6a8009c9c19"
+  "55c815c3979c8d3713f6e2e7ee67d508"
+  "a4d3e6b05115a226b87ffeda830a27d5"
+)
+
+_pkgfile="K40_Whisperer-${pkgver}_src"
+
+build() {
+  cd ${_pkgfile}
+  dos2unix k40_whisperer.py
+  chmod +x k40_whisperer.py
+}
+
+package() {
+  mkdir -p ${pkgdir}/usr/lib
+  cp -r ${_pkgfile} ${pkgdir}/usr/lib/${pkgname}
+
+  mkdir -p ${pkgdir}/usr/bin
+  ln -sf /usr/lib/${pkgname}/k40_whisperer.py ${pkgdir}/usr/bin/${pkgname}
+  chmpod +x ${pkgdir}/usr/bin/${pkgname}
+
+  mkdir -p ${pkgdir}/etc/udev/rules.d
+  cp 97-ctc-lasercutter.rules ${pkgdir}/etc/udev/rules.d/
+}
+
+post_install() {
+  udevadm control --reload
+  udevadm trigger
+}
