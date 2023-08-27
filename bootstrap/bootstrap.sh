@@ -344,7 +344,7 @@ network={
 EOF
 
 	#arch-chroot /mnt systemctl enable wpa_supplicant.service
-	arch-chroot /mnt systemctl enable wpa_supplicant@wifi_net.service
+	arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}.service
 fi
 
 # enable network services...
