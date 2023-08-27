@@ -31,7 +31,7 @@ build() {
 package() {
   cd ${srcdir}
   install -D -m644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-  install -D -m644 "${pkgname}.ico" "${pkgdir}/usr/share/pixmaps/${pkgname}.ico"
+  install -D -m644 "${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
 
   cd F-Engrave-${pkgver}_src
   install -Dm755 ${pkgname}.py "$pkgdir/usr/bin/${pkgname}"
