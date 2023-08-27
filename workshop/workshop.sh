@@ -26,7 +26,7 @@ source <(curl -L ${REPO_RAW}/bootstrap/bootstrap.sh)
 
 # Custom to Workshop Machine
 arch-chroot /mnt pacman -Syu --noconfirm \
-	plasma konsole kcalc \
+	plasma konsole kcalc dolphin \
 	flatpak fwupd packagekit-qt5 \
 	nfs-utils samba refind \
 	firefox inkscape \
@@ -81,8 +81,8 @@ EOF
 # cat >> /mnt/etc/fstab << EOF
 # # Shared Network Volumes
 # sahmaxi.lan:/home/houser	/home/houser/.nfs	nfs	defaults	0 0
-# sahmaxi.lan:/srv/shared		/srv/shared		nfs	defaults	0 0
-# sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
+sahmaxi.lan:/srv/shared		/srv/shared		nfs	defaults	0 0
+sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
 # EOF
 
 # Remove nopassword sudoer for wheel, revert

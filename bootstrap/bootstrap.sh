@@ -299,7 +299,7 @@ echo ""
 echo "Setting up timezone and locale..."
 arch-chroot /mnt ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 arch-chroot /mnt hwclock --systohc
-arch-chroot /mnt systemctl enable systemd-timesyncd.service
+arch-chroot /mnt systemctl enable systemd-timesyncd
 
 echo en_US.UTF-8 UTF-8 >> /mnt/etc/locale.gen
 echo LANG=en_US.UTF-8 >> /mnt/etc/locale.conf
@@ -336,15 +336,16 @@ network={
 EOF
 
 	#arch-chroot /mnt systemctl enable wpa_supplicant.service
-	arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}.service
+	arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}
 fi
 
 # enable network services...
-arch-chroot /mnt systemctl enable systemd-networkd.service
+arch-chroot /mnt systemctl enable systemd-networkd
 # Don't wait for the network to boot
-arch-chroot /mnt systemctl disable systemd-networkd-wait-online.service
+arch-chroot /mnt systemctl disable systemd-networkd-wait-online
+arch-chroot /mnt systemctl enable systemd-resolved
 
-arch-chroot /mnt systemctl enable sshd.service
+arch-chroot /mnt systemctl enable sshd
 
 echo ""
 echo "Setting up accounts..."
