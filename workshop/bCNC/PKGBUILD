@@ -28,13 +28,10 @@ build() {
 package() {
   cd "${srcdir}/${pkgname}"
   python setup.py install --root="${pkgdir}" --optimize=1 --skip-build
+
+  install -D -m755 "${srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -D -m644 "${pkgname}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-  install -D -m644 "${pkgname}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
-  
-  mkdir -p "${pkgdir}/usr/bin"
-  echo "#!/usr/bin/env bash" > "${pkgdir}/usr/bin/${pkgname}"
-  echo "python -m ${pkgname}" > "${pkgdir}/usr/bin/${pkgname}"
-  chmod +x "${pkgdir}/usr/bin/${pkgname}"
+  install -D -m644 "${pkgname}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"  
 }
 
 

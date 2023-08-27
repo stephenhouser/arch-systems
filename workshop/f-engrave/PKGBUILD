@@ -17,23 +17,22 @@ md5sums=('2f3e6c72cfd97984a9bd330885616321'
          'c94db9bfe108173355079e4183b6fb7c'
          '51476b9d534f25abf233dab176c3c476')
 
+pkgsrc="F-Engrave-${pkgver}_src"
+
 prepare() {
-  cd F-Engrave-${pkgver}_src
+  cd "${pkgsrc}"
   dos2unix ${pkgname}.py
   patch < ../arch.patch
 }
 
 build() {
-  cd F-Engrave-${pkgver}_src/TTF2CXF_STREAM
+  cd "${pkgsrc}/TTF2CXF_STREAM"
   make
 }
 
 package() {
-  cd F-Engrave-${pkgver}_src
-  install -Dm755 ${pkgname}.py "$pkgdir/usr/bin/${pkgname}"
-  cd TTF2CXF_STREAM
-  install -Dm755 ttf2cxf_stream "$pkgdir/usr/bin/ttf2cxf_stream"
-
+  install -D -m755 "${srcdir}/${pkgsrc}/${pkgname}.py" "$pkgdir/usr/bin/${pkgname}"
+  install -D -m755 "${srcdir}/${pkgsrc}/TTF2CXF_STREAM/ttf2cxf_stream" "$pkgdir/usr/bin/ttf2cxf_stream"
   install -D -m644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install -D -m644 "${srcdir}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
 }

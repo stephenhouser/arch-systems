@@ -78,6 +78,13 @@ MaximumUid=65536
 MinimumUid=1000
 EOF
 
+cat >> /mnt/etc/fstab << EOF
+# Shared Network Volumes
+sahmaxi.lan:/home/houser	/home/houser/.nfs	nfs	defaults	0 0
+sahmaxi.lan:/srv/shared		/srv/shared		nfs	defaults	0 0
+sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
+EOF
+
 # Remove nopassword sudoer for wheel, revert
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers

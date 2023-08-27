@@ -13,12 +13,14 @@ depends=("python" "python-lxml" "python-pyusb" "python-pillow" "python-pyclipper
 makedepends=("unzip" "dos2unix")
 source=(
   "https://www.scorchworks.com/K40whisperer/K40_Whisperer-${pkgver}_src.zip"
+  "k40_whisperer"
   "k40_whisperer.desktop"
   "k40_whisperer.png"
-  "97-k40_whisperer.rules"
+  "k40_whisperer.rules"
 )
 md5sums=(
   "12b4cf581e02ca65f773b6a8009c9c19"
+  "b744a48d6108bed63394bb235c60b001"
   "4db52e04088c5dcc2ca1c786b910aa93"
   "22a72242a1716986b7f71e94aa4860dd"
   "55c815c3979c8d3713f6e2e7ee67d508"
@@ -27,25 +29,17 @@ md5sums=(
 build() {
   cd K40_Whisperer-${pkgver}_src
   dos2unix k40_whisperer.py
-  chmod +x k40_whisperer.py
 }
 
 package() {
   mkdir -p ${pkgdir}/usr/lib
   cp -r K40_Whisperer-${pkgver}_src ${pkgdir}/usr/lib/${pkgname}
 
-  mkdir -p ${pkgdir}/usr/bin
-  cat > "${pkgdir}/usr/bin/${pkgname}" <<EOF
-#!/usr/bin/env bash
-python /usr/lib/${pkgname}/k40_whisperer.py
-EOF
-  chmod +x "${pkgdir}/usr/bin/${pkgname}"
-
-  mkdir -p ${pkgdir}/etc/udev/rules.d
-  cp "{$srcdir}97-k40_whisperer.rules" "${pkgdir}/etc/udev/rules.d/"
-
+  install -D -m755 "{$srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -D -m644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install -D -m644 "${srcdir}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"    
+
+  install -D -m644 "{$srcdir}/${pkgname}.rules" "${pkgdir}/etc/udev/rules.d/97-${pkgname}.rules"
 }
 
 post_install() {
