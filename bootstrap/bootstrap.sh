@@ -316,24 +316,32 @@ EOF
 
 echo ""
 echo "Setting up network..."
-cat >> /mnt/etc/systemd/network/10-${wire_net}.network << EOF
-[Match]
-Name=${wire_net}
+cat >> /mnt/etc/systemd/network/10-${wire_net}.network <<- EOF
+		[Match]
+		Name=${wire_net}
 
-[Network]
-DHCP=yes
-EOF
+		[Network]
+		DHCP=yes
+	EOF
 
 if [ "${configure_wifi}" = true ]; then
-	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf << EOF
-# allow frontend (e.g., wpa_cli) to be used by all users in 'wheel' group
-ctrl_interface=/var/run/wpa_supplicant 
-ctrl_interface_group=wheel
-network={
-	ssid="${wifi_ssid}"
-	psk="${wifi_psk}"
-}
-EOF
+	cat >> /mnt/etc/systemd/network/20-${wifi_net}.network <<- EOF
+		[Match]
+		Name=${wifi_net}
+
+		[Network]
+		DHCP=yes
+	EOF
+
+	cat >> /mnt/etc/wpa_supplicant/wpa_supplicant-${wifi_net}.conf <<- EOF
+		# allow frontend (e.g., wpa_cli) to be used by all users in 'wheel' group
+		ctrl_interface=/var/run/wpa_supplicant 
+		ctrl_interface_group=wheel
+		network={
+			ssid="${wifi_ssid}"
+			psk="${wifi_psk}"
+		}
+	EOF
 
 	#arch-chroot /mnt systemctl enable wpa_supplicant.service
 	arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}
@@ -371,13 +379,13 @@ arch-chroot /mnt mkinitcpio -P
 
 if [ "${firmware}" == "UEFI" ]; then
 	arch-chroot /mnt bootctl --path=/boot install
-	cat >> /mnt/boot/loader/entries/arch.conf << EOF
-title   Arch Linux
-linux   /vmlinuz-linux
-initrd  /intel-ucode.img
-initrd  /initramfs-linux.img
-options root=${part_root} rw
-EOF
+	cat >> /mnt/boot/loader/entries/arch.conf <<- EOF
+		title   Arch Linux
+		linux   /vmlinuz-linux
+		initrd  /intel-ucode.img
+		initrd  /initramfs-linux.img
+		options root=${part_root} rw
+	EOF
 
 	# start after power loss
 	echo ""

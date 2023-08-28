@@ -7,5 +7,6 @@ Categories=Science;Electronics;Engineering
 Keywords=CNC;Laser;
 Comment=K40 Whisperer Laser Engraver Controller
 Exec=/usr/bin/k40_whisperer
+Icon=/usr/share/pixmaps/k40_whisperer.png
 Terminal=false
 StartupNotify=false

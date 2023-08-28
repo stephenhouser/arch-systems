@@ -58,31 +58,31 @@ arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/
 # set greeter theme
 # set autologin to workshop
 mkdir -p /mnt/etc/sddm.conf.d
-cat > /mnt/etc/sddm.conf.d/kde_settings.conf << EOF
-[Autologin]
-Relogin=false
-User=workshop
-Session=plasma
+cat > /mnt/etc/sddm.conf.d/kde_settings.conf <<- EOF
+	[Autologin]
+	Relogin=false
+	User=workshop
+	Session=plasma
 
-[General]
-HaltCommand=/usr/bin/systemctl poweroff
-RebootCommand=/usr/bin/systemctl reboot
+	[General]
+	HaltCommand=/usr/bin/systemctl poweroff
+	RebootCommand=/usr/bin/systemctl reboot
 
-[Theme]
-Current=breeze
-CursorTheme=breeze_cursors
-Font=Noto Sans,10,-2,0,50,0,0,0,0,0
+	[Theme]
+	Current=breeze
+	CursorTheme=breeze_cursors
+	Font=Noto Sans,10,-2,0,50,0,0,0,0,0
 
-[Users]
-MaximumUid=65536
-MinimumUid=1000
+	[Users]
+	MaximumUid=65536
+	MinimumUid=1000
 EOF
 
-cat >> /mnt/etc/fstab << EOF
-# Shared Network Volumes
-# sahmaxi.lan:/home/houser	/home/houser/.nfs	nfs	defaults	0 0
-sahmaxi.lan:/srv/shared		/srv/shared		nfs	defaults	0 0
-sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
+cat >> /mnt/etc/fstab <<- EOF
+	# Shared Network Volumes
+	# sahmaxi.lan:/home/houser	/home/houser/.nfs	nfs	defaults	0 0
+	sahmaxi.lan:/srv/shared		/srv/shared		nfs	defaults	0 0
+	sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
 EOF
 
 # Remove nopassword sudoer for wheel, revert
