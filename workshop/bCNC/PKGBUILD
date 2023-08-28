@@ -2,37 +2,35 @@
 # Maintainer: h8red <h8red@yandex.ru>
 # Maintainer: Grey Christoforo <first name at last name dot net>
 pkgname=bCNC
-pkgver=1.0
+pkgver=0.9.14.304
 pkgrel=1
 pkgdesc="GRBL CNC command sender, autoleveler and g-code editor"
 arch=('any')
 url="https://github.com/vlachoudis/bCNC"
 license=(GPL2)
-depends=(python python-setuptools python-pyserial python-pillow tk)
-makedepends=(git python-setuptools)
+depends=(python python-pipx)
+makedepends=(git)
 provides=("${pkgname%}")
-source=("git+https://github.com/vlachoudis/bCNC.git" 
-        bCNC.sh
-        bCNC.desktop)
-md5sums=('SKIP'
-         '4dd0849f80aecfb2bafac82ad08b6e27'
-         'eb1e3a2269f1ac79ca6759cd45fbc735')
+source=(bCNC
+        bCNC.png
+        bCNC.desktop
+        bCNC.install)
+md5sums=('fe1c7a1cd0e50c838e113f8720183904'
+         '644f4e126e3f23c4408e3c629af5fa22'
+         '8292bc70794898c740bf87fe7c105e43'
+         'd56cb49a099d016645344606c2856969')
 
-pkgver() {
-    cd "${srcdir}/${pkgname}"
-    printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git describe --always)"
-}
+install=${pkgname}.install
 
 build() {
-  cd "${srcdir}/${pkgname}"
-  python setup.py build
+  #cd "${srcdir}/${pkgname}"
+  #python setup.py build
 }
 
 package() {
-  cd "${srcdir}/${pkgname}"
-  python setup.py install --root="${pkgdir}" --optimize=1
-
-  install -D -m755 "${srcdir}/${pkgname}.sh" "${pkgdir}/usr/bin/${pkgname}"
+  #python setup.py install --root="${pkgdir}" --optimize=1
+  #pipx install bCNC
+  install -D -m755 "${srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -D -m644 "${pkgname}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
   install -D -m644 "${pkgname}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"  
 }
