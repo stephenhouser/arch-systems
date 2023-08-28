@@ -1,30 +1,32 @@
 #!/bin/bash
 
-REPO_URL=http://github.com/stephenhouser/arch-systems
-REPO_RAW=https://raw.githubusercontent.com/stephenhouser/arch-systems/master/
-
+# Workshop Computer for CNC and Laser Engraving
 # MacMini6,1
 hostname=workshop
 disk=/dev/sda
 fstype=f2fs
+system_packages="broadcom-wl-dkms "
 wire_net=enp1s0f0
 configure_wifi=true
 wifi_net=wlp2s0
 wifi_ssid="houser"
-# wifi_psk="wpa-pre-shared-key"
-system_packages="broadcom-wl-dkms "
-#rootpass=root
+#wifi_psk=
+#rootpass=
 user=workshop
-#password=workshop
+#password=
 
 # Boostrap Arch Linux Base
-source <(curl -L ${REPO_RAW}/bootstrap/bootstrap.sh)
-
-# Full system update and upgrade to latest rolling release!
-#arch-chroot /mnt pacman -Syy --noconfirm		# update package indicies
-#arch-chroot /mnt pacman -Syu --noconfirm 		# upgrade the packages.
+# Name of the repo (in GitHub) to pull from
+REPO_NAME=system-setup
+REPO_URL=http://github.com/stephenhouser/${REPO_NAME}.git
+REPO_RAW=https://raw.githubusercontent.com/stephenhouser/${REPO_NAME}/master/
+source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 
 # Custom to Workshop Machine
+# KDE Plasma Desktop with Dolphon, Konsole, kCalc
+# Firefox web browser
+# Inkscape for design editing
+# NFS to connect to shared volumes
 arch-chroot /mnt pacman -Syu --noconfirm \
 	plasma konsole kcalc dolphin \
 	flatpak fwupd packagekit-qt5 \
@@ -32,8 +34,7 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	firefox inkscape \
 	unzip wget
 
-# Enable SDDM greeter
-# set greeter theme and autologin to workshop
+# Enable SDDM greeter with autologin as workshop user
 arch-chroot /mnt systemctl enable sddm.service
 
 mkdir -p /mnt/etc/sddm.conf.d
@@ -65,30 +66,30 @@ cat >> /mnt/etc/fstab <<- EOF
 	sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
 EOF
 
-# Enable sudo w/o password to install
+# Enable sudo w/o password to install, will revert later in script
 sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
 
-# Pikaur
+# Pikaur (not used)
 #arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
 
-# Local Packages to build and install
-arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git'
+# Clone this repo to build and install local packages and skeleton
+arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 ${REPO_URL}'
 
 # F-Engrave
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
-arch-chroot /mnt su ${user} -c 'cd ~/arch-systems/workshop/f-engrave; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/f-engrave; makepkg -si --noconfirm'
 
 # K40 Whisperer
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
-arch-chroot /mnt su ${user} -c 'cd ~/arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/k40_whisperer; makepkg -si --noconfirm'
 
 # bCNC -- 2023-08-27: bCNC and bCNC-git are broken in AUR 
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
-arch-chroot /mnt su ${user} -c 'cd ~/arch-systems/workshop/bCNC; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm'
 
 # Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd ~/arch-systems/workshop; rsync -av ./skeleton/ ~${user}'
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}'
 
 # Remove staging repo
 #arch-chroot /mnt su ${user} -c 'rm -rf ~/arch-systems'
