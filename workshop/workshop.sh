@@ -70,11 +70,13 @@ EOF
 sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
 
-# Pikaur (not used)
-#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
-
 # Clone this repo to build and install local packages and skeleton
 arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 ${REPO_URL}'
+# Copy user skeleton, setting up desktop, screen background, etc.
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}'
+
+# Pikaur (not used)
+#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
 
 # F-Engrave
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
@@ -88,11 +90,8 @@ arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/k40_whisperer; makepk
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm'
 
-# Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}'
-
 # Remove staging repo
-#arch-chroot /mnt su ${user} -c 'rm -rf ~/arch-systems'
+#arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
 
 # Remove nopassword sudoer for wheel, revert
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
