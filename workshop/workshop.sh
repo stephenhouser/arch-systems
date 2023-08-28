@@ -32,10 +32,10 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	firefox inkscape \
 	unzip wget
 
+# Enable SDDM greeter
+# set greeter theme and autologin to workshop
 arch-chroot /mnt systemctl enable sddm.service
 
-# set greeter theme
-# set autologin to workshop
 mkdir -p /mnt/etc/sddm.conf.d
 cat > /mnt/etc/sddm.conf.d/kde_settings.conf <<- EOF
 	[Autologin]
@@ -57,6 +57,7 @@ cat > /mnt/etc/sddm.conf.d/kde_settings.conf <<- EOF
 	MinimumUid=1000
 EOF
 
+# Mount Shared network volumes
 cat >> /mnt/etc/fstab <<- EOF
 	# Shared Network Volumes
 	# sahmaxi.lan:/home/houser	/home/houser/.nfs	nfs	defaults	0 0
