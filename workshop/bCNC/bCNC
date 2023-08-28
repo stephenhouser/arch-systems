@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
+source $(pipx environment)
+if [ ! -d ${PIPX_HOME}/venvs/bcnc ]; then
+	pipx install bCNC
+fi
+
 exec pipx run bCNC $*
