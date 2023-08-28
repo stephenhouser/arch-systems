@@ -14,7 +14,7 @@ provides=("${pkgname%}")
 source=(bCNC
         bCNC.png
         bCNC.desktop)
-md5sums=('fe1c7a1cd0e50c838e113f8720183904'
+md5sums=('f03523be0ede7bad5474fc06700429eb'
          '644f4e126e3f23c4408e3c629af5fa22'
          '85a92a81dfc26c0ec0d7a6c51323d625')
 
