@@ -4,6 +4,6 @@ Categories=Development
 Name=bCNC
 Comment=GRBL CNC command sender, autoleveler and g-code editor
 Exec=pipx run bCNC
-Icon=bcnc.png
+Icon=/usr/share/pixmaps/bCNC.png
 StartupNotify=false
 Terminal=false
