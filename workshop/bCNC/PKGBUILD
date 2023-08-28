@@ -23,16 +23,13 @@ md5sums=('fe1c7a1cd0e50c838e113f8720183904'
 install=${pkgname}.install
 
 build() {
-  #cd "${srcdir}/${pkgname}"
-  #python setup.py build
+  cd "${srcdir}"
 }
 
 package() {
-  #python setup.py install --root="${pkgdir}" --optimize=1
-  #pipx install bCNC
-  install -D -m755 "${srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
-  install -D -m644 "${pkgname}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-  install -D -m644 "${pkgname}/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"  
+  install -D -m755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+  install -D -m644 "${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  install -D -m644 "${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"  
 }
 
 
