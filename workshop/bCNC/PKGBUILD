@@ -17,7 +17,7 @@ source=(bCNC
         bCNC.install)
 md5sums=('fe1c7a1cd0e50c838e113f8720183904'
          '644f4e126e3f23c4408e3c629af5fa22'
-         '8292bc70794898c740bf87fe7c105e43'
+         'df0b23aec81fdf3ada89efd7167c2edb'
          'd56cb49a099d016645344606c2856969')
 
 install=${pkgname}.install
