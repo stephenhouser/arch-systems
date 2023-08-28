@@ -13,14 +13,10 @@ makedepends=(git)
 provides=("${pkgname%}")
 source=(bCNC
         bCNC.png
-        bCNC.desktop
-        bCNC.install)
+        bCNC.desktop)
 md5sums=('fe1c7a1cd0e50c838e113f8720183904'
          '644f4e126e3f23c4408e3c629af5fa22'
-         'df0b23aec81fdf3ada89efd7167c2edb'
-         '30e52781ff04a5d50b0c4566f9a837ed')
-
-install=${pkgname}.install
+         '85a92a81dfc26c0ec0d7a6c51323d625')
 
 build() {
   cd "${srcdir}"
