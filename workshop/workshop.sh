@@ -82,10 +82,8 @@ arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/f-engrave; makepkg -si 
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
 arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
 
-# bCNC
-#arch-systems.git; cd /tmp/arch-systems/workshop/bCNC; makepkg -si --noconfirm'
-# 2023-08-27: bCNC and bCNC-git are broken in AUR 
-# arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
+# bCNC -- 2023-08-27: bCNC and bCNC-git are broken in AUR 
+#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/bCNC; makepkg -si --noconfirm'
 
 # Copy user skeleton, setting up desktop, screen background, etc.
