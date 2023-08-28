@@ -1,9 +1,10 @@
-# Arch Linux System Setup Scripts
+# System Setup Scripts
 
-Setup scripts for bootstrapping Arch Linux systems around my house.
+Setup scripts for bootstrapping various computers.
 
-- `mini-mame`: MAME Arcade Machine with MAME, Windows Games, Daphne, Retro Arch
-- `workshop`: Laser and CNC controller machine in workshop.
+- `arch-bootstrap` (Arch): Central common Arch Linux setup. Runs as part of other setups.
+- `mini-mame` (Arch): MAME Arcade Machine with MAME, Windows Games, Daphne, Retro Arch
+- `workshop` (Arch): Laser and CNC controller machine in workshop.
 
 # MINI-MAME
 
