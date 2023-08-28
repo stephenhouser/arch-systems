@@ -16,6 +16,10 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
+[Containments][1][Wallpaper][org.kde.image][General]
+Image=/home/workshop/.local/vintage-wallpaper-8.jpg
+SlidePaths=/usr/share/wallpapers/
+
 [Containments][2]
 activityId=
 formfactor=2
@@ -60,7 +64,7 @@ immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:systemsettings.desktop,applications:org.kde.discover.desktop,preferred://browser,applications:org.kde.konsole.desktop,applications:f-engrave.desktop
+launchers=applications:systemsettings.desktop,preferred://browser,applications:org.kde.konsole.desktop,applications:org.kde.dolphin.desktop,applications:org.inkscape.Inkscape.desktop,applications:f-engrave.desktop,applications:k40_whisperer.desktop
 
 [Containments][2][Applets][6]
 immutability=1
