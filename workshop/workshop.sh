@@ -34,27 +34,6 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 
 arch-chroot /mnt systemctl enable sddm.service
 
-# Enable sudo w/o password to install
-sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
-sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
-
-# Pikaur
-#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
-
-# F-Engrave
-#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/f-engrave; makepkg -si --noconfirm'
-
-# K40 Whisperer
-#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
-
-# bCNC
-#arch-systems.git; cd /tmp/arch-systems/workshop/bCNC; makepkg -si --noconfirm'
-# 2023-08-27: bCNC and bCNC-git are broken in AUR 
-# arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop/bCNC; makepkg -si --noconfirm'
-
 # set greeter theme
 # set autologin to workshop
 mkdir -p /mnt/etc/sddm.conf.d
@@ -85,10 +64,37 @@ cat >> /mnt/etc/fstab <<- EOF
 	sahmaxi.lan:/srv/public		/srv/public		nfs	defaults	0 0
 EOF
 
+# Enable sudo w/o password to install
+sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
+sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
+
+# Pikaur
+#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
+
+# Local Packages to build and install
+arch-chroot /mnt su ${user} -c 'git clone --depth=1 https://github.com/stephenhouser/arch-systems.git'
+
+# F-Engrave
+#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
+arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/f-engrave; makepkg -si --noconfirm'
+
+# K40 Whisperer
+#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
+arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/k40_whisperer; makepkg -si --noconfirm'
+
+# bCNC
+#arch-systems.git; cd /tmp/arch-systems/workshop/bCNC; makepkg -si --noconfirm'
+# 2023-08-27: bCNC and bCNC-git are broken in AUR 
+# arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
+arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop/bCNC; makepkg -si --noconfirm'
+
+# Copy user skeleton, setting up desktop, screen background, etc.
+arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop; rsync -av ./skeleton/ ~${user}'
+
+# Remove staging repo
+#arch-chroot /mnt su ${user} -c 'rm -rf arch-systems'
+
 # Remove nopassword sudoer for wheel, revert
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
-
-# Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone --depth=1 https://github.com/stephenhouser/arch-systems.git; cd arch-systems/workshop; rsync -av ./skeleton/ ~${user}'
 
