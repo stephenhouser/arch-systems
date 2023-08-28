@@ -96,3 +96,7 @@ arch-chroot /mnt su ${user} -c 'cd arch-systems/workshop; rsync -av ./skeleton/ 
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
+# Done.
+echo ""
+echo "Workshop setup complete. Reboot now."
+echo ""
