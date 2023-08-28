@@ -214,30 +214,29 @@ if [ "${configure_wifi}" = true ]; then
 fi
 
 # Review
-cat >> /tmp/settings.$$ << EOF
-Build system with the following settings...
+cat >> /tmp/settings.$$ <<- EOF
+		hostname=${hostname}
+		rootpass=${rootpass}
+		user=${user}
+		password=${password}
+		disk=${disk}
+		part_root=${part_root:-"auto"}
+		part_swap=${part_swap:-"auto"}
+		fstype=${fstype}
+		firmware=${firmware}
+		system_packages=${system_packages}
+		wire_net=${wire_net}
+		configure_wifi=${configure_wifi}
+		wifi_net=${wifi_net:-"--unset--"}
+		wifi_ssid=${wifi_ssid:-"--unset--"}
+		wifi_psk=${wifi_psk:-"--unset--"}
+	EOF
 
-hostname=${hostname}
-rootpass=${rootpass}
-user=${user}
-password=${password}
-disk=${disk}
-part_root=${part_root:-"auto"}
-part_swap=${part_swap:-"auto"}
-fstype=${fstype}
-firmware=${firmware}
-system_packages=${system_packages}
-wire_net=${wire_net}
-configure_wifi=${configure_wifi}
-wifi_net=${wifi_net:-"--unset--"}
-wifi_ssid=${wifi_ssid:-"--unset--"}
-wifi_psk=${wifi_psk:-"--unset--"}
-EOF
-
-whiptail --title "Review settings" --scrolltext --textbox /tmp/settings.$$ 20 50 || exit 1
-rm /tmp/settings.$$
-
-whiptail --yesno "Install system?" 0 0 || exit 1
+whiptail --title "Review settings" \
+		--yesno "$(cat /tmp/settings.$$)" 0 0 \
+		--yes-button Install \
+		--no-button Cancel \
+		--defaultno || exit 1
 
 ### Set up logging ###
 exec 1> >(tee "stdout.log")
@@ -308,21 +307,21 @@ arch-chroot /mnt locale-gen
 echo ""
 echo "Setting up hostname and hosts..."
 echo $hostname >> /mnt/etc/hostname
-cat >> /mnt/etc/hosts << EOF	
-127.0.0.1 localhost
-::1 localhost
-127.0.0.1 ${hostname}.localdomain ${hostname}
+cat >> /mnt/etc/hosts <<- EOF	
+	127.0.0.1 localhost
+	::1 localhost
+	127.0.0.1 ${hostname}.localdomain ${hostname}
 EOF
 
 echo ""
 echo "Setting up network..."
 cat >> /mnt/etc/systemd/network/10-${wire_net}.network <<- EOF
-		[Match]
-		Name=${wire_net}
+	[Match]
+	Name=${wire_net}
 
-		[Network]
-		DHCP=yes
-	EOF
+	[Network]
+	DHCP=yes
+EOF
 
 if [ "${configure_wifi}" = true ]; then
 	cat >> /mnt/etc/systemd/network/20-${wifi_net}.network <<- EOF
