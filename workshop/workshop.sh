@@ -71,24 +71,24 @@ sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoer
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
 
 # Clone this repo to build and install local packages and skeleton
-arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 ${REPO_URL}'
+arch-chroot /mnt su ${user} -c "cd ~; git clone --depth=1 ${REPO_URL}"
 # Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}'
+arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}"
 
 # Pikaur (not used)
-#arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
+#arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm"
 
 # F-Engrave
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm f-engrave'
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/f-engrave; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/f-engrave; makepkg -si --noconfirm"
 
 # K40 Whisperer
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm k40whisperer'
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/k40_whisperer; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/k40_whisperer; makepkg -si --noconfirm"
 
 # bCNC -- 2023-08-27: bCNC and bCNC-git are broken in AUR 
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm"
 
 # Remove staging repo
 #arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
