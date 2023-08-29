@@ -89,6 +89,7 @@ arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/k40_whisperer; makepk
 # bCNC -- 2023-08-27: bCNC and bCNC-git are broken in AUR 
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm"
+arch-chroot /mnt su ${user} -c "pipx install bCNC"
 
 # Remove staging repo
 #arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
