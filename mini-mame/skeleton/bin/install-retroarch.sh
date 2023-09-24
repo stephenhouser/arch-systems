@@ -32,7 +32,7 @@ chmod g+ws /usr/lib/libretro
 function download_core() {
 	cd /usr/lib/libretro
 	rm -f ${1}
-	curl -LOJ http://buildbot.libretro.com/nightly/linux/x86_64/latest/${1}_libretro.so.zip && \
+	curl -LOJ https://buildbot.libretro.com/nightly/linux/x86_64/latest/${1}_libretro.so.zip && \
 		unzip ${1}_libretro.so.zip && \
 		rm ${1}_libretro.so.zip
 }
@@ -44,11 +44,12 @@ download_core mame2010
 #download_core mame2015	# not available in latest build (url above)
 #download_core mame2016 # not available in latest build (url above)
 #download_core mame		# not available in latest build (url above)
+
 download_core scummvm
 download_core fbneo
 
 #download_core stella		# Atari 2600
-#download_core atari800
+download_core atari800		# Atari 800
 download_core fbneo			# FinalBurn Neo (MAME clone)
 #download_core vice_x64		# Commodore 64 (fast/accurate)
 #download_core vice_x64sc	# Commodore 64 SuperCPU
