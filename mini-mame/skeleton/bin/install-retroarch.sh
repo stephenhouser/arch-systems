@@ -29,6 +29,8 @@ chgrp wheel /usr/lib/libretro
 chmod g+ws /usr/lib/libretro
 
 # Download MAME 2000, MAME 2003+, and MAME 2010 cores for RetroARch / LibRetro
+# Stable cores are in 7z format
+# https://buildbot.libretro.com/stable/1.16.0/linux/x86_64/RetroArch_cores.7z
 function download_core() {
 	cd /usr/lib/libretro
 	rm -f ${1}
@@ -37,27 +39,27 @@ function download_core() {
 		rm ${1}_libretro.so.zip
 }
 
+download_core mame
 download_core mame2000
 download_core mame2003
 download_core mame2003_plus
+download_core mame2003_midway
 download_core mame2010
-#download_core mame2015	# not available in latest build (url above)
-#download_core mame2016 # not available in latest build (url above)
-#download_core mame		# not available in latest build (url above)
+#download_core mame2015		# not available in latest build (url above)
+#download_core mame2016 	# not available in latest build (url above)
+download_core fbneo			# FinalBurn NEO - MAME but for playability not reproduction
 
-download_core scummvm
-download_core fbneo
-
-#download_core stella		# Atari 2600
+download_core scummvm		# for Windows games (PuttPutt, Pajama Sam, Freddie Fish)
+download_core stella		# Atari 2600
 download_core atari800		# Atari 800
 download_core fbneo			# FinalBurn Neo (MAME clone)
-#download_core vice_x64		# Commodore 64 (fast/accurate)
-#download_core vice_x64sc	# Commodore 64 SuperCPU
-#download_core dosbox_core	# DOSBox
-#download_core dosbox_pure	# DOSBox
-#download_core bnes			# Nintendo Entertainment System (bNES)
-#download_core quicknes		# Nintendo Entertainment System (bNES)
-#download_core ffmpeg		# Videos
+download_core vice_x64		# Commodore 64 (fast/accurate)
+download_core vice_x64sc	# Commodore 64 SuperCPU
+download_core dosbox_core	# DOSBox
+download_core dosbox_pure	# DOSBox
+download_core bnes			# Nintendo Entertainment System (bNES)
+download_core quicknes		# Nintendo Entertainment System (bNES)
+download_core ffmpeg		# Videos
 
 echo ""
 echo "Done."
