@@ -34,7 +34,7 @@ function download_core() {
 	rm -f ${1}
 	wget http://buildbot.libretro.com/nightly/linux/x86_64/latest/${1}_libretro.so.zip && \
 		unzip ${1}_libretro.so.zip && \
-		rm ${1}_libretro.so.zip'
+		rm ${1}_libretro.so.zip
 }
 
 download_core mame2000
