@@ -290,6 +290,12 @@ fi
 echo ""
 echo "Botstrapping the root volume..."
 
+while ! systemctl show pacman-init.service | grep SubState=exited; do
+	echo "Waiting for pacman keyring init to be done..."
+    systemctl --no-pager status -n0 pacman-init.service || true
+    sleep 1
+done
+
 pacstrap /mnt ${base_packages} ${system_packages}
 
 genfstab -t PARTUUID /mnt >> /mnt/etc/fstab

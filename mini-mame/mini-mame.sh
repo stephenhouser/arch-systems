@@ -35,8 +35,8 @@ source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 # Enable multilib 32-bit binaries (for Wine)
 # update package indicies
 cp /mnt/etc/pacman.conf /tmp/pacman.conf
-awk '/^#\[multilib\]$/ {sub("#",""); print; getline; sub("#",""); print; next;} 1' < /tmp/pacman.conf > /mnt/etc/pacman.conf
-arch-chroot /mnt pacman -Syy --noconfirm
+#awk '/^#\[multilib\]$/ {sub("#",""); print; getline; sub("#",""); print; next;} 1' < /tmp/pacman.conf > /mnt/etc/pacman.conf
+# arch-chroot /mnt pacman -Syy --noconfirm
 
 arch-chroot /mnt pacman --noconfirm -S \
 	xorg xorg-xinit \
@@ -60,12 +60,12 @@ sed -i 's/^%wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoer
 sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/' /mnt/etc/sudoers
 
 # Clone this repo to build and install local packages and skeleton
-arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 ${REPO_URL}'
+arch-chroot /mnt su ${user} -c "cd ~; git clone --depth=1 ${REPO_URL}"
 # Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/mini-mame; rsync -av ./skeleton/ ~${user}'
+arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/mini-mame; rsync -av ./skeleton/ ~${user}"
 
 # Pikaur
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm"
 
 # echo ""
 # echo "Unmute ALSA Audio..."
@@ -77,7 +77,7 @@ arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless
 # amixer sset Headphone '100%'
 
 # RetroArch (libretro for MAME)..."
-arch-chroot /mnt bash '~${user}/bin/install-retroarch.sh'
+arch-chroot /mnt bash "~${user}/bin/install-retroarch.sh"
 
 # MAME
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm mame-git'
@@ -91,15 +91,15 @@ arch-chroot /mnt pacman -S --noconfirm mame
 arch-chroot /mnt pacman -S --noconfirm scummvm scummvm-tools
 
 # Daphne (laser disc games)..."
-arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/stephenhouser/arch-daphne-git.git; cd arch-daphne-git; makepkg -si --noconfirm'
+arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/stephenhouser/arch-daphne-git.git; cd arch-daphne-git; makepkg -si --noconfirm"
 
 # Hypseus Singe
 # https://github.com/DirtBagXon/hypseus-singe
 # A drop-in replacement to daphne, to play laserdisc arcade games on a PC.
-arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm hypseus-singe-git'
+arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm hypseus-singe-git"
 
 # Attract Mode
-arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm attract-git'
+arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm attract-git"
 
 # Microsoft Windows things...
 # https://wiki.archlinux.org/index.php/Wine
