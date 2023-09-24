@@ -31,7 +31,7 @@ arch-chroot /mnt pacman -Syu --noconfirm \
 	plasma konsole kcalc dolphin \
 	flatpak fwupd packagekit-qt5 \
 	nfs-utils samba refind \
-	firefox inkscape \
+	firefox inkscape code \
 	unzip wget
 
 # Enable SDDM greeter with autologin as workshop user

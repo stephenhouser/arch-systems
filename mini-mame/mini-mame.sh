@@ -18,7 +18,7 @@ user=mame
 # Boostrap Arch Linux Base
 # Name of the repo (in GitHub) to pull from
 REPO_NAME=system-setup
-REPO_URL=http://github.com/stephenhouser/${REPO_NAME}.git
+REPO_URL=https://github.com/stephenhouser/${REPO_NAME}.git
 REPO_RAW=https://raw.githubusercontent.com/stephenhouser/${REPO_NAME}/master/
 source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 
@@ -62,7 +62,7 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 # Clone this repo to build and install local packages and skeleton
 arch-chroot /mnt su ${user} -c 'cd ~; git clone --depth=1 ${REPO_URL}'
 # Copy user skeleton, setting up desktop, screen background, etc.
-arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/workshop; rsync -av ./skeleton/ ~${user}'
+arch-chroot /mnt su ${user} -c 'cd ~/${REPO_NAME}/mini-mame; rsync -av ./skeleton/ ~${user}'
 
 # Pikaur
 arch-chroot /mnt su ${user} -c 'cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm'
