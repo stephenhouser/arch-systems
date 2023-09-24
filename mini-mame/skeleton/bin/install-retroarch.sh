@@ -32,7 +32,7 @@ chmod g+ws /usr/lib/libretro
 function download_core() {
 	cd /usr/lib/libretro
 	rm -f ${1}
-	wget http://buildbot.libretro.com/nightly/linux/x86_64/latest/${1}_libretro.so.zip && \
+	curl -lJ http://buildbot.libretro.com/nightly/linux/x86_64/latest/${1}_libretro.so.zip && \
 		unzip ${1}_libretro.so.zip && \
 		rm ${1}_libretro.so.zip
 }
