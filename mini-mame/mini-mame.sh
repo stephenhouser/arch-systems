@@ -77,7 +77,7 @@ arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless
 # amixer sset Headphone '100%'
 
 # RetroArch (libretro for MAME)..."
-arch-chroot /mnt bash "~${user}/bin/install-retroarch.sh"
+arch-chroot /mnt bash -c "~${user}/bin/install-retroarch.sh"
 
 # MAME
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm mame-git'
