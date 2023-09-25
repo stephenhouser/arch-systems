@@ -35,8 +35,8 @@ source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 # Enable multilib 32-bit binaries (for Wine)
 # update package indicies
 cp /mnt/etc/pacman.conf /tmp/pacman.conf
-#awk '/^#\[multilib\]$/ {sub("#",""); print; getline; sub("#",""); print; next;} 1' < /tmp/pacman.conf > /mnt/etc/pacman.conf
-# arch-chroot /mnt pacman -Syy --noconfirm
+awk '/^#\[multilib\]$/ {sub("#",""); print; getline; sub("#",""); print; next;} 1' < /tmp/pacman.conf > /mnt/etc/pacman.conf
+arch-chroot /mnt pacman -Syy --noconfirm
 
 arch-chroot /mnt pacman --noconfirm -S \
 	xorg xorg-xinit \
