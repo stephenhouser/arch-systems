@@ -44,7 +44,7 @@ arch-chroot /mnt pacman --noconfirm -S \
 	xorg-fonts-misc xterm xorg-mkfontdir \
 	lxde \
 	alsa-utils \
-	fuseiso
+	fuseiso unzip
 
 # Enable automatic login to the console
 # https://wiki.archlinux.org/index.php/Getty
