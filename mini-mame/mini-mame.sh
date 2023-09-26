@@ -141,6 +141,14 @@ echo "Disable ${user} sudo without a password."
 sed -i "s/^%wheel ALL=(ALL:ALL) NOPASSWD: ALL/# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/" /mnt/etc/sudoers
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
+
+echo ""
+echo "Setup startup..."
+
+# Non-graphical -- we start X by ourselves
+arch-chroot /mnt systemctl set-default multi-user.target
+
+
 # Done.
 echo ""
 echo "Mini-MAME setup complete. Reboot now."
