@@ -384,13 +384,13 @@ arch-chroot /mnt mkinitcpio -P
 
 if [ "${firmware}" == "UEFI" ]; then
 	# arch-chroot /mnt bootctl --path=/boot install
-	# cat >> /mnt/boot/loader/entries/arch.conf <<- EOF
-	# 	title   Arch Linux
-	# 	linux   /vmlinuz-linux
-	# 	initrd  /intel-ucode.img
-	# 	initrd  /initramfs-linux.img
-	# 	options root=${part_root} rw
-	# EOF
+	cat >> /mnt/boot/loader/entries/arch.conf <<- EOF
+		title   Arch Linux
+		linux   /vmlinuz-linux
+		initrd  /intel-ucode.img
+		initrd  /initramfs-linux.img
+		options root=${part_root} rw
+	EOF
 	arch-chroot /mnt refind-install
 
 	# start after power loss
