@@ -6,7 +6,8 @@ hostname=mini-mame
 disk=/dev/sda
 fstype=f2fs
 system_packages="broadcom-wl-dkms "
-wire_net=enp1s0f0
+#wire_net=enp1s0f0
+wire_net=enp1s0
 configure_wifi=true
 wifi_net=wlp2s0
 wifi_ssid="houser"
@@ -99,6 +100,7 @@ arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/stephenhou
 arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm hypseus-singe-git"
 
 # Attract Mode
+arch-chroot /mnt pacman -S --noconfirm gnu-free-fonts
 arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm attract-git"
 
 # Microsoft Windows things...

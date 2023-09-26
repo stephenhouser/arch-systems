@@ -6,6 +6,10 @@
 # libretro-overlays		-- graphic overlays
 # retroarch-assets-xmb	-- graphic elements of retroarch UI
 
+echo ""
+echo "*** Installing RetroArch and Cores..."
+echo ""
+
 # Install RetroArch -- really for libretro and the "cores" that will allow
 # running earlier versions of MAME arcade games. This is just a very
 # basic install as I don't use the frontend of RetroArch, I just want the
@@ -40,11 +44,11 @@ function download_core() {
 }
 
 download_core mame
-download_core mame2000
-download_core mame2003
-download_core mame2003_plus
+download_core mame2000		# mame2000 and mame0.37b5
+download_core mame2003		# mame2003
+download_core mame2003_plus	# mame2003_plus and mame0.78+
 #download_core mame2003_midway
-download_core mame2010
+download_core mame2010		# mame2010
 #download_core mame2015		# not available in latest build (url above)
 #download_core mame2016 	# not available in latest build (url above)
 download_core fbneo			# FinalBurn NEO (MAME clone) for playability not reproduction
