@@ -3,7 +3,7 @@
 # Maintainer: Nat Lasseter <aur at 4574 dot co dot uk>
 
 pkgname="k40_whisperer"
-pkgver="0.64"
+pkgver="0.67"
 pkgrel="1"
 pkgdesc="Control software for the stock K40 Laser controller"
 arch=("any")
@@ -19,7 +19,7 @@ source=(
   "k40_whisperer.rules"
 )
 md5sums=(
-  "12b4cf581e02ca65f773b6a8009c9c19"
+  'SKIP'
   "b744a48d6108bed63394bb235c60b001"
   "e38e05d6fad37d4fcbf84b4d6682883f"
   "22a72242a1716986b7f71e94aa4860dd"
