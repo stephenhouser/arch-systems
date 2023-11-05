@@ -201,7 +201,7 @@ fi
 # Firmware packages
 if [ "${firmware}" == "UEFI" ]; then
 	# efibootmgr		-- for manipulating UEFI boot order systemd-boot
-	system_packages+="efibootmgr refind"
+	system_packages+="efibootmgr refind "
 else
 	# grub				-- The GRUB bootloader
 	system_packages+="grub "
@@ -383,7 +383,7 @@ echo "Setting up boot manager and initial ramdisk..."
 arch-chroot /mnt mkinitcpio -P
 
 if [ "${firmware}" == "UEFI" ]; then
-	# arch-chroot /mnt bootctl --path=/boot install
+	arch-chroot /mnt bootctl --path=/boot install
 	cat >> /mnt/boot/loader/entries/arch.conf <<- EOF
 		title   Arch Linux
 		linux   /vmlinuz-linux
