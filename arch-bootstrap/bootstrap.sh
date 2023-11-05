@@ -103,7 +103,7 @@
 base_packages="
 	linux linux-firmware linux-headers intel-ucode
 	base base-devel
-	openssh shadow
+	openssh
 	e2fsprogs exfatprogs f2fs-tools dosfstools ntfs-3g
 	pkgfile libnewt
 	man-db man-pages
@@ -366,12 +366,12 @@ echo "Setting up accounts..."
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoers
 
 # Root password
-echo "root:$rootpass" | chpasswd --root /mnt
+echo "root:$rootpass" | arch-chroot /mnt chpasswd
 
 # Add user account
 arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G  wheel,uucp,video,audio,storage,games,input ${user}
 arch-chroot /mnt chsh -s /usr/bin/zsh
-echo "${user}:$password" | chpasswd --root /mnt
+echo "${user}:$password" | arch-chroot /mnt chpasswd
 
 echo ""
 echo "Setting up packages..."
