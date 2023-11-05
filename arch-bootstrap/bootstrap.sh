@@ -103,7 +103,7 @@
 base_packages="
 	linux linux-firmware linux-headers intel-ucode
 	base base-devel
-	openssh
+	openssh shadow
 	e2fsprogs exfatprogs f2fs-tools dosfstools ntfs-3g
 	pkgfile libnewt
 	man-db man-pages
