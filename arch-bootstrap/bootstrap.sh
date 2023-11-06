@@ -396,7 +396,28 @@ if [ "${firmware}" == "UEFI" ]; then
 	# start after power loss
 	echo ""
 	echo "Setting up power on after power loss..."
-	setpci -s 0:1f.0 0xa4.b=0
+	setpci -s 0:1f.0 0xa4.b=0:1
+
+	cat >> /mnt/etc/systemd/system/reboot-on-power.service <<- EOF
+		[Unit]
+		Description=Reboot after power failure
+
+		[Service]
+		Type=oneshot
+		# reboot register for Mac Mini with nVidia ISA bridge
+		# ExecStart=setpci -s 00:03.0 0x7b.b=0x19
+
+		# reboot register for Mac Mini with Intel ISA bridge
+		ExecStart=sudo setpci -s 0:1f.0 0xa4.b=0:1
+
+		# reboot register for PPC Mac Mini (not tested myself):
+		# ExecStart=echo server_mode=1 > /proc/pmu/options
+
+
+		[Install]
+		WantedBy=sysinit.target	
+	EOF
+	arch-chroot /mnt systemctl enable reboot-on-power
 else
 	arch-chroot /mnt grub-install ${disk}
 	arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg

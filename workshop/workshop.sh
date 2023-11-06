@@ -27,12 +27,13 @@ source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 # Firefox web browser
 # Inkscape for design editing
 # NFS to connect to shared volumes
+# Wine for carbide create and carbide motion (shapeoko CNC)
 arch-chroot /mnt pacman -Syu --noconfirm \
 	plasma konsole kcalc dolphin \
 	flatpak fwupd packagekit-qt5 \
 	nfs-utils samba refind \
 	firefox inkscape code \
-	unzip wget
+	unzip wget wine
 
 # Enable SDDM greeter with autologin as workshop user
 arch-chroot /mnt systemctl enable sddm.service
@@ -90,6 +91,10 @@ arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/k40_whisperer; makepk
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm bcnc'
 arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/workshop/bCNC; makepkg -si --noconfirm"
 arch-chroot /mnt su ${user} -c "pipx install bCNC"
+
+# Carbide Create and Carbide Motion use wine
+arch-chroot /mnt su ${user} -c "curl -LO https://carbide-downloads.website-us-east-1.linodeobjects.com/cm/stable/618/CarbideMotion-618.exe"
+arch-chroot /mnt su ${user} -c "curl -LO https://carbide-downloads.website-us-east-1.linodeobjects.com/cc/stable/757/CarbideCreate-757.exe"
 
 # Remove staging repo
 #arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
