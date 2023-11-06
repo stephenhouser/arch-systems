@@ -63,13 +63,17 @@ plugin=org.kde.plasma.systemtray
 PreloadWeight=55
 SystrayContainmentId=8
 
+[Containments][2][ConfigDialog]
+DialogHeight=84
+DialogWidth=1920
+
 [Containments][2][General]
 AppletOrder=3;4;5;6;7;18;19
 
-[Containments][20]
-ItemGeometries-1280x720=
+[Containments][21]
+ItemGeometries-1920x1080=
 ItemGeometriesHorizontal=
-activityId=0a2c3911-76b4-4726-ac3b-afa9caa1bc03
+activityId=b2243441-05bb-4309-aa8e-ce0912c244ee
 formfactor=0
 immutability=1
 lastScreen=0
@@ -77,11 +81,7 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
-[Containments][20][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][20][Wallpaper][org.kde.image][General]
+[Containments][21][Wallpaper][org.kde.image][General]
 Image=/home/workshop/.local/vintage-wallpaper-8.jpg
 
 [Containments][8]
@@ -146,3 +146,4 @@ knownItems=org.kde.plasma.bluetooth,org.kde.plasma.battery,org.kde.plasma.clipbo
 
 [ScreenMapping]
 itemsOnDisabledScreens=
+screenMapping=
