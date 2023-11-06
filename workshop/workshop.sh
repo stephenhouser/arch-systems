@@ -28,6 +28,13 @@ source <(curl -L ${REPO_RAW}/arch-bootstrap/bootstrap.sh)
 # Inkscape for design editing
 # NFS to connect to shared volumes
 # Wine for carbide create and carbide motion (shapeoko CNC)
+
+# Enable multilib in pacman for wine
+cat >> /mnt/etc/pacman.conf <<- EOF
+	[multilib]
+	Include = /etc/pacman.d/mirrorlist
+EOF
+
 arch-chroot /mnt pacman -Syu --noconfirm \
 	plasma konsole kcalc dolphin \
 	flatpak fwupd packagekit-qt5 \
