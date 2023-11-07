@@ -49,7 +49,7 @@ immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:systemsettings.desktop,preferred://browser,applications:org.kde.konsole.desktop,applications:org.kde.dolphin.desktop,applications:org.inkscape.Inkscape.desktop,applications:f-engrave.desktop,applications:k40_whisperer.desktop,applications:bCNC.desktop
+launchers=applications:systemsettings.desktop,preferred://browser,applications:org.kde.konsole.desktop,applications:org.kde.dolphin.desktop,applications:org.inkscape.Inkscape.desktop,applications:f-engrave.desktop,applications:k40_whisperer.desktop,applications:bCNC.desktop,applications:wine-Programs-Carbide Motion.desktop,applications:wine-Programs-Carbide Create V7.desktop
 
 [Containments][2][Applets][6]
 immutability=1
