@@ -1,5 +1,10 @@
 #!/usr/bin/zsh
 
+
+zsh_pause() {
+	
+}
+
 alias vi=vim
 alias ls='ls --color=auto'
 
@@ -19,8 +24,10 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	timeout=5
 	should_logout=1
 	while [[ $timeout -gt 0 ]] ; do
+		# ZSH's read does not use '-p' and reutrns 1 on timeout
+		# Bash's read uses '-p' for prompt and returns > 128 on timeout
 		read -t 1 "?$timeout seconds... "
-		if [[ $? -lt 128 ]]; then
+		if [[ $? -eq 0 ]]; then
 			should_logout=0
 			break
 		fi
