@@ -19,7 +19,7 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	timeout=5
 	should_logout=1
 	while [[ $timeout -gt 0 ]] ; do
-		read -t 1 -p "$timeout seconds... "
+		read -t 1 "?$timeout seconds... "
 		if [[ $? -lt 128 ]]; then
 			should_logout=0
 			break
