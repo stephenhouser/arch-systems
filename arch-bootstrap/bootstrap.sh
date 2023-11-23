@@ -403,22 +403,10 @@ if [ "${firmware}" == "UEFI" ]; then
 
 	# TODO: Don't scan for Linux kernels, only use the one I installed.
 	echo scan_all_linux_kernels false >> /mnt/boot/EFI/refind/refind.conf
-
-	cat >> /mnt/boot/EFI/refind/refind.conf <<- EOF
-		menuentry "Kids MAME 1" {
-			icon	/EFI/refind/icons/is_arch.png
-			volume 	${part_root}
-			loader   /vmlinuz-linux
-			initrd  /intel-ucode.img
-			initrd  /initramfs-linux.img
-			options root=${part_root} rw
-
-			submenuentry "Boot to terminal" {
-				add_options "systemd.unit=multi-user.target"
-			}
-		}
 	EOF
 
+	arch-chroot /mnt refind-install
+	
 	# start after power loss
 	echo ""
 	echo "Setting up power on after power loss..."
