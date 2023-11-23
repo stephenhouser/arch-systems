@@ -396,7 +396,7 @@ if [ "${firmware}" == "UEFI" ]; then
 	# start after power loss
 	echo ""
 	echo "Setting up power on after power loss..."
-	setpci -s 0:1f.0 0xa4.b=0:1
+	setpci -s 0:1f.0 0xa4.b=0
 
 	cat >> /mnt/etc/systemd/system/reboot-on-power.service <<- EOF
 		[Unit]
