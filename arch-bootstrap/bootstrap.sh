@@ -404,6 +404,7 @@ if [ "${firmware}" == "UEFI" ]; then
 	# TODO: Don't scan for Linux kernels, only use the one I installed.
 	echo scan_all_linux_kernels false >> /mnt/boot/EFI/refind/refind.conf
 
+	# make sure refind is installed after updating...
 	arch-chroot /mnt refind-install
 
 	# start after power loss
