@@ -38,5 +38,4 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	if [[ $should_logout -eq 1 ]]; then
 		killall -9 zsh
 	fi
-
 fi
