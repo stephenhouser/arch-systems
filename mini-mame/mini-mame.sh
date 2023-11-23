@@ -1,20 +1,19 @@
 #!/bin/bash
 
-# Workshop Computer for CNC and Laser Engraving
+# Mini Arcade Computer for Playing MAME and Arcade Games
 # MacMini6,1
 hostname=mini-mame
 disk=/dev/sda
 fstype=f2fs
 system_packages="broadcom-wl-dkms "
-#wire_net=enp1s0f0
 wire_net=enp1s0
 configure_wifi=true
 wifi_net=wlp2s0
 wifi_ssid="houser"
-#wifi_psk=
-#rootpass=
+#wifi_psk= -- entered as part of setup in bootstrap
+#rootpass= -- entered as part of setup in bootstrap
 user=mame
-#password=
+#password= -- entered as part of setup in bootstrap
 
 # Boostrap Arch Linux Base
 # Name of the repo (in GitHub) to pull from

@@ -142,7 +142,7 @@ if [ -z ${fstype+x} ]; then
 fi
 
 netdevices=()
-for dev in $(ip link show | tac | egrep "^[0-9]+:" | cut -d: -f2); do
+for dev in $(ip link show | tac | grep -E "^[0-9]+:" | cut -d: -f2); do
 	netdevices+=("$dev" " ")
 done
 
@@ -348,8 +348,16 @@ if [ "${configure_wifi}" = true ]; then
 		}
 	EOF
 
-	#arch-chroot /mnt systemctl enable wpa_supplicant.service
-	arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}
+	# Check that wifi device exists before enabling the service
+	if [[ " ${netdevices[*]} " =~ " ${wifi_net} " ]]; then
+		#arch-chroot /mnt systemctl enable wpa_supplicant.service
+		arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}
+	else
+		echo
+		echo "WARNING: WiFi device ${wifi_net} does not exist!"
+		echo "WARNING: Configuring but not enabling WiFi"
+		echo
+	fi
 fi
 
 # enable network services...
