@@ -397,12 +397,15 @@ if [ "${firmware}" == "UEFI" ]; then
 		linux   /vmlinuz-linux
 		initrd  /intel-ucode.img
 		initrd  /initramfs-linux.img
-		options root=${part_root} rw
+		options root=${part_root} rw quiet splash
 	EOF
 	arch-chroot /mnt refind-install
 
-	# TODO: Don't scan for Linux kernels, only use the one I installed.
-	echo scan_all_linux_kernels false >> /mnt/boot/EFI/refind/refind.conf
+	# Don't scan for Linux kernels, only use the systemd one we just installed
+	REFIND_DIR=/mnt/boot/EFI/refind
+	REFIND_CONFIG=${REFIND_DIR}/refind.conf
+	sed -i 's/^#scan_all_linux_kernels false$/scan_all_linux_kernels false/' ${REFIND_CONFIG}
+	sed -i 's/^timeout 20$/timeout 1/' ${REFIND_CONFIG}
 
 	# make sure refind is installed after updating...
 	arch-chroot /mnt refind-install

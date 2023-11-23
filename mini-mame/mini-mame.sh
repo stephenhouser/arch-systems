@@ -147,6 +147,25 @@ echo "Setup startup..."
 # Non-graphical -- we start X by ourselves
 arch-chroot /mnt systemctl set-default multi-user.target
 
+[ -d /sys/firmware/efi ] && firmware=UEFI || firmware=BIOS
+
+# Set refind to boot our entry
+if [ "${firmware}" == "UEFI" ]; then
+	REFIND_DIR=/mnt/boot/EFI/refind
+	REFIND_CONFIG=${REFIND_DIR}/refind.conf
+	cat >> ${REFIND_CONFIG} <<- EOF
+		banner refind_banner.jpg
+		banner_scale fullscreen
+
+		menuentry "Kids MAME 1" {
+			graphics on
+			loader   /EFI/systemd/systemd-bootx64.efi
+			icon     /EFI/refind/kids-mame-1.png
+		}
+
+		default_selection "Kids MAME 1"
+	EOF
+fi
 
 # Done.
 echo ""
