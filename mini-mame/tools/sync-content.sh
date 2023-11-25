@@ -17,20 +17,15 @@ for system in ${systems} ; do
 	done
 done
 
-# Link current versions...
-if [ -d ~/mame0.227 ]; then
-	ln -s ~/mame0.227 ~/mame		
-fi
+# Link content to current versions...
+[ -d ~/mame ] && rm ~/mame
+[ -d ~/mame0.227 ] && ln -s ~/mame0.227 ~/mame
 
-if [ -d ~/daphne1.0 ]; then
-	rm ~/daphne
-	ln -s ~/daphne1.0 ~/daphne
-fi
+[ -d ~/scummvm ] && rm ~/scummvm
+[ -d ~/scummvm2.2 ] && ln -s ~/scummvm2.2 ~/scummvm
 
-if [ -d ~/scummvm2.2 ]; then
-	rm ~/scummvm
-	ln -s ~/scummvm2.2 ~/scummvm
-fi
+[ -d ~/daphne ] && rm ~/daphne
+[ -d ~/daphne1.0 ] && ln -s ~/daphne1.0 ~/daphne
 
 if [ -d ~/fbneo ]; then
 	# ln -s ~/fbneo ~/fbneo
