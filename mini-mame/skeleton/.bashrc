@@ -1,16 +1,17 @@
-#!/usr/bin/zsh
+#
+#
 
+# from skeleton
+[[ $- != *i* ]] && return
 
-zsh_pause() {
-	
-}
-
-alias vi=vim
 alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+PS1='[\u@\h \W]\$ '
 
-if [ -d "\${HOME}/bin" ] ; then
-		PATH="\${HOME}/bin:$PATH"
-fi
+# local changes
+alias vi=vim
+
+export PATH="${HOME}/bin:$PATH"
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	/usr/bin/startx -- -nocursor
@@ -24,10 +25,9 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	timeout=5
 	should_logout=1
 	while [[ $timeout -gt 0 ]] ; do
-		# ZSH's read does not use '-p' and reutrns 1 on timeout
 		# Bash's read uses '-p' for prompt and returns > 128 on timeout
-		read -t 1 "?$timeout seconds... "
-		if [[ $? -eq 0 ]]; then
+		read -t 1 -p "${timeout} seconds... "
+		if [[ $? -lt 128 ]]; then
 			should_logout=0
 			break
 		fi

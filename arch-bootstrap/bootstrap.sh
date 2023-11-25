@@ -377,8 +377,7 @@ sed -i 's/# %wheel ALL=(ALL:ALL) ALL/# %wheel ALL=(ALL:ALL) ALL/' /mnt/etc/sudoe
 echo "root:$rootpass" | arch-chroot /mnt chpasswd
 
 # Add user account
-arch-chroot /mnt useradd -mU -s /usr/bin/zsh -G  wheel,uucp,video,audio,storage,games,input ${user}
-arch-chroot /mnt chsh -s /usr/bin/zsh
+arch-chroot /mnt useradd -mU -G  wheel,uucp,video,audio,storage,games,input ${user}
 echo "${user}:$password" | arch-chroot /mnt chpasswd
 
 echo ""
