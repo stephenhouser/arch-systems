@@ -1,4 +1,7 @@
+# 
+# Start attract mode to play games
 #
+# - give an option to end at shell when exit. Otherwise logout
 #
 
 # from skeleton
@@ -17,10 +20,10 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	/usr/bin/startx -- -nocursor
 
 	clear
-	echo
-	echo
+	echo ""
+	echo ""
 	echo "*** Press RETURN to exit to shell ***"
-	echo
+	echo ""
 
 	timeout=5
 	should_logout=1

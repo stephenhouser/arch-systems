@@ -69,6 +69,34 @@ arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/mini-mame; rsync -av ./skeleto
 # Pikaur
 arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless/pikaur.git; cd /tmp/pikaur; makepkg -si --noconfirm"
 
+# RetroArch (libretro for MAME)..."
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-retroarch.sh"
+
+# MAME
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-mame.sh"
+
+# MAME v0227 -- FOR SPECIFIC VERSION 0.227
+# Disabled as this takes a *long* time
+#arch-chroot /mnt su ${user} -c "${TOOLS}/install-mame0227.sh"
+
+# ScummVM 
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-scummvm.sh"
+
+# Daphne (laser disc games)..."
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-daphne.sh"
+
+# Hypseus Singe
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-hypseus-singe.sh"
+
+# Wine for windows games (future)
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-wine.sh"
+
+# Attract Mode
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-attract-mode.sh"
+
+# Remove staging repo
+#arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
+
 # echo ""
 # echo "Unmute ALSA Audio..."
 # amixer sset Master unmute
@@ -77,67 +105,6 @@ arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless
 # amixer sset Speaker '100%'
 # amixer sset Headphone unmute
 # amixer sset Headphone '100%'
-
-# RetroArch (libretro for MAME)..."
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-retroarch.sh"
-
-# MAME
-#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm mame-git'
-#arch-chroot /mnt pacman -S --noconfirm mame
-# MAME v0227 -- FOR SPECIFIC VERSION 0.227
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-mame0227.sh"
-
-# ScummVM 
-#arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm scummvm-git'
-#arch-chroot /mnt pacman -S --noconfirm scummvm scummvm-tools
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-scummvm.sh"
-
-# Daphne (laser disc games)..."
-#arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/stephenhouser/arch-daphne-git.git; cd arch-daphne-git; makepkg -si --noconfirm"
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-daphne.sh"
-
-# Hypseus Singe
-# https://github.com/DirtBagXon/hypseus-singe
-# A drop-in replacement to daphne, to play laserdisc arcade games on a PC.
-# arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm hypseus-singe-git"
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-hypseus-singe.sh"
-
-# Attract Mode
-#arch-chroot /mnt pacman -S --noconfirm gnu-free-fonts
-#arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm attract-git"
-arch-chroot /mnt su ${user} -c "${TOOLS}/install-attract-mode.sh"
-
-# Microsoft Windows things...
-# https://wiki.archlinux.org/index.php/Wine
-# wine				-- not an emulator of windoes
-# winetricks		-- for setting things up easier
-# wine-mono			-- .NET framework
-# wine-gecko		-- Internet Explorer widgets
-# lib32-alsa-lib	-- for 32-bit windows
-# lib32-libpulse	-- for 32-bit windows
-# lib32-mpg123		-- MP3 for wine
-# lib32-giflib		-- GIF for wine
-# lib32-libpng		-- PNG for wine
-# Enable multilib to get wine
-arch-chroot /mnt pacman --noconfirm -S \
-	wine winetricks wine-mono wine-gecko \
-	lib32-alsa-lib lib32-libpulse \
-	lib32-mpg123 lib32-giflib lib32-libpng
-
-# to get a cmd prompt ... $ wineconsole cmd
-# winetricks windowscodecs
-
-echo ""
-echo "*** Windows Games ***"
-echo ""
-echo "You still need need to run 'wine' and 'winecfg' under X to configure Wine"
-echo "	startx /usr/bin/wine progman"
-echo "	startx /usr/bin/winecfg"
-echo "and install any packages it asks to install."
-echo ""
-
-# Remove staging repo
-#arch-chroot /mnt su ${user} -c 'rm -rf ~/${REPO_NAME}'
 
 # Remove nopassword sudoer for wheel, revert
 echo ""
