@@ -5,7 +5,7 @@ echo ""
 echo "*** Installing MAME (default version)..."
 echo ""
 
-arch-chroot /mnt pacman -S --noconfirm mame
+sudo pacman -S --noconfirm mame
 
 echo ""
 echo "Done."
