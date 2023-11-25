@@ -16,6 +16,15 @@ alias vi=vim
 
 export PATH="${HOME}/bin:$PATH"
 
+if [ ! -d ~/shared ] ; then
+	echo ""
+	echo ""
+	echo "*** No Games Installed ***"
+	echo ""
+
+	exit 
+fi
+
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	/usr/bin/startx -- -nocursor
 
