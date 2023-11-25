@@ -9,7 +9,7 @@ for system in ${systems} ; do
 	echo "Installing [$system]..."
 	rsync -rv --chmod=D775,F664 "${content_src}/${system}/" ~
 
-	for ver in ~/${system}/${system}* ; do
+	for ver in ~/${system}* ; do
 		echo " link artwork [$ver]..."
 		for art in ~/shared/${system}/* ; do
 			ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
@@ -23,10 +23,12 @@ if [ -d ~/mame0.227 ]; then
 fi
 
 if [ -d ~/daphne1.0 ]; then
+	rm ~/daphne
 	ln -s ~/daphne1.0 ~/daphne
 fi
 
 if [ -d ~/scummvm2.2 ]; then
+	rm ~/scummvm
 	ln -s ~/scummvm2.2 ~/scummvm
 fi
 
