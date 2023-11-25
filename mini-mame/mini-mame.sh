@@ -61,6 +61,8 @@ sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: A
 
 # Clone this repo to build and install local packages and skeleton
 arch-chroot /mnt su ${user} -c "cd ~; git clone --depth=1 ${REPO_URL}"
+TOOLS="~${user}/${REPO_NAME}/${hostname}/tools"
+
 # Copy user skeleton, setting up desktop, screen background, etc.
 arch-chroot /mnt su ${user} -c "cd ~/${REPO_NAME}/mini-mame; rsync -av ./skeleton/ ~${user}"
 
@@ -77,33 +79,33 @@ arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/actionless
 # amixer sset Headphone '100%'
 
 # RetroArch (libretro for MAME)..."
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-retroarch.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-retroarch.sh"
 
 # MAME
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm mame-git'
 #arch-chroot /mnt pacman -S --noconfirm mame
 # MAME v0227 -- FOR SPECIFIC VERSION 0.227
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-mame0227.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-mame0227.sh"
 
 # ScummVM 
 #arch-chroot /mnt su ${user} -c 'pikaur -Syu --noconfirm scummvm-git'
 #arch-chroot /mnt pacman -S --noconfirm scummvm scummvm-tools
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-scummvm.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-scummvm.sh"
 
 # Daphne (laser disc games)..."
 #arch-chroot /mnt su ${user} -c "cd /tmp; git clone https://github.com/stephenhouser/arch-daphne-git.git; cd arch-daphne-git; makepkg -si --noconfirm"
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-daphne.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-daphne.sh"
 
 # Hypseus Singe
 # https://github.com/DirtBagXon/hypseus-singe
 # A drop-in replacement to daphne, to play laserdisc arcade games on a PC.
 # arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm hypseus-singe-git"
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-hypseus-singe.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-hypseus-singe.sh"
 
 # Attract Mode
 #arch-chroot /mnt pacman -S --noconfirm gnu-free-fonts
 #arch-chroot /mnt su ${user} -c "pikaur -Syu --noconfirm attract-git"
-arch-chroot /mnt bash -c "~${user}/${REPO_NAME}/mini-mame/tools/install-attract-mode.sh"
+arch-chroot /mnt su ${user} -c "${TOOLS}/install-attract-mode.sh"
 
 # Microsoft Windows things...
 # https://wiki.archlinux.org/index.php/Wine

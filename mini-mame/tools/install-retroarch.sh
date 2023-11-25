@@ -15,7 +15,7 @@ echo ""
 # basic install as I don't use the frontend of RetroArch, I just want the
 # ability to use it to launch the libretro-mame games and get the nice
 # benefits of libretro.
-pacman -S --noconfirm \
+sudo pacman -S --noconfirm \
 	retroarch libretro-core-info libretro-overlays retroarch-assets-ozone
 
 # Run one time to get the template configuration setup
@@ -28,9 +28,9 @@ pacman -S --noconfirm \
 #sed -i 's|video_fullscreen = "false"|video_fullscreen = "true"|' ~/.config/retroarch/retroarch.cfg
 
 # Make directory for libretro cores (not created by default)
-mkdir -p /usr/lib/libretro
-chgrp wheel /usr/lib/libretro
-chmod g+ws /usr/lib/libretro
+sudo mkdir -p /usr/lib/libretro
+sudo chgrp wheel /usr/lib/libretro
+sudo chmod g+ws /usr/lib/libretro
 
 # Download MAME 2000, MAME 2003+, and MAME 2010 cores for RetroARch / LibRetro
 # Stable cores are in 7z format
