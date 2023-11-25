@@ -1,22 +1,20 @@
 #!/bin/bash
 
-content_src=${1:-houser@sahmaxi.lan/house/Archive/mini-mame/}
-systems="daphne mame scummvm fbneo"
+content_src=${1:-houser@sahmaxi.lan:Archive/mini-mame}
+systems="daphne fbneo mame scummvm"
 
 cd ~
 
 for system in ${systems} ; do
 	echo "Installing [$system]..."
-	if [ -d "${content_src}/${system}" ]; then
-		echo "\tshared files..."		
-		rsync -rv --chmod=D775,F664 "${content_src}/${system}/" ~
-		for ver in ~/${system}/${system}* ; do
-			echo "\tlink artwork [$ver]..."
-			for art in ~/shared/${system}/*; do
-				ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
-			done
+	rsync -rv --chmod=D775,F664 "${content_src}/${system}/" ~
+
+	for ver in ~/${system}/${system}* ; do
+		echo " link artwork [$ver]..."
+		for art in ~/shared/${system}/* ; do
+			ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
 		done
-	fi
+	done
 done
 
 # Link current versions...
@@ -38,7 +36,3 @@ if [ -d ~/fbneo ]; then
 		ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
 	done
 fi
-
-# Copy in The Great Theme Collection v10.3 files
-#cp -Rv ${content_dir}/assets/the_great_theme_collection-v10.3/* ~/.attract/
-
