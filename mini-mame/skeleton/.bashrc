@@ -22,7 +22,7 @@ if [ ! -d ~/shared ] ; then
 	echo "*** No Games Installed ***"
 	echo ""
 
-	exit 
+	return 
 fi
 
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
