@@ -1,4 +1,4 @@
-#!/bin/bash
+e!/bin/bash
 # Arch Install Bootstrap
 
 # WARNING: this script will destroy data on the selected disk.
@@ -207,7 +207,7 @@ fi
 # Firmware packages
 if [ "${firmware}" == "UEFI" ]; then
 	# efibootmgr		-- for manipulating UEFI boot order systemd-boot
-	system_packages+="efibootmgr refind "
+	system_packages+="efibootmgr "
 else
 	# grub				-- The GRUB bootloader
 	system_packages+="grub "
@@ -397,7 +397,9 @@ echo "Setting up boot manager and initial ramdisk..."
 arch-chroot /mnt mkinitcpio -P
 
 if [ "${firmware}" == "UEFI" ]; then
+  # Install systemd-boot
 	arch-chroot /mnt bootctl --path=/boot install
+
 	cat >> /mnt/boot/loader/entries/arch.conf <<- EOF
 		title   Arch Linux
 		linux   /vmlinuz-linux
@@ -405,16 +407,14 @@ if [ "${firmware}" == "UEFI" ]; then
 		initrd  /initramfs-linux.img
 		options root=${part_root} rw quiet splash
 	EOF
-	arch-chroot /mnt refind-install
 
-	# Don't scan for Linux kernels, only use the systemd one we just installed
-	REFIND_DIR=/mnt/boot/EFI/refind
-	REFIND_CONFIG=${REFIND_DIR}/refind.conf
-	sed -i 's/^#scan_all_linux_kernels false$/scan_all_linux_kernels false/' ${REFIND_CONFIG}
-	sed -i 's/^timeout 20$/timeout 1/' ${REFIND_CONFIG}
-
-	# make sure refind is installed after updating...
-	arch-chroot /mnt refind-install
+	cat >> /mnt/boot/loader/entries/arch-fallback.conf <<- EOF
+		title   Arch Linux (fallback)
+		linux   /vmlinuz-linux
+		initrd  /intel-ucode.img
+		initrd  /initramfs-linux-fallback.img
+		options root=${part_root} rw
+	EOF
 
 	# start after power loss
 	echo ""
