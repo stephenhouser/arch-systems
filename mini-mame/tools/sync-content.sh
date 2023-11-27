@@ -1,6 +1,6 @@
 #!/bin/bash
 
-content_src=${1:-houser@sahmaxi.lan:Archive/mini-mame}
+content_src=${1:-houser@sahmaxi.lan:/srv/systems/mini-mame}
 systems="daphne fbneo mame scummvm"
 
 cd ~
