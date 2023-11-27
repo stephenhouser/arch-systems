@@ -123,20 +123,20 @@ arch-chroot /mnt systemctl set-default multi-user.target
 
 # Set systemd-boot to boot our entry
 if [ "${firmware}" == "UEFI" ]; then
-  cat >> /mnt/boot/loader/entries/mini-mame.conf <<- EOF
-    title   Mini Mame
-    linux   /vmlinuz-linux
-    initrd  /intel-ucode.img
-    initrd  /initramfs-linux.img
-    options root=${part_root} rw quiet splash
-  EOF
+	cat >> /mnt/boot/loader/entries/mini-mame.conf <<- EOF
+		title   Mini Mame
+		linux   /vmlinuz-linux
+		initrd  /intel-ucode.img
+		initrd  /initramfs-linux.img
+		options root=${part_root} rw quiet splash
+	EOF
 
-  cat >> /mnt/boot/loader/loader.conf <<- EOF
-    default mini-mame.conf
-    timeout 1
-    console-mode auto
-    editor yes
-  EOF
+	cat >> /mnt/boot/loader/loader.conf <<- EOF
+		default mini-mame.conf
+		timeout 1
+		console-mode auto
+		editor yes
+	EOF
 fi
 
 # Done.

@@ -7,7 +7,8 @@ cd ~
 
 for system in ${systems} ; do
 	echo "Installing [$system]..."
-	#rsync -rv --chmod=D775,F664 "${content_src}/${system}/" ~
+	#rsync -aiv --chmod=D775,F664 "${content_src}/${system}/" ~
+	rsync -aiv "${content_src}/${system}/" ~
 
 	for ver in ~/${system}* ; do
 		[[ ${system} == "fbneo" ]] && system="mame"
@@ -15,7 +16,6 @@ for system in ${systems} ; do
 		if [[ "$(basename ${ver})" == "${system}" ]] ; then
 			continue
 		fi
-
 
 		echo " link shared artwork [$ver]..."
 		for art in ~/shared/${system}/* ; do
