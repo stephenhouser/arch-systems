@@ -6,6 +6,12 @@
 #   curl -sL https://git.io/JLHZM | bash
 # Based heavily on https://disconnected.systems/blog/archlinux-installer/#the-complete-installer-script
 
+cat > /tmp/bootstrap.txt <<- EOF
+
+Arch Bootstrap complete with the following notes:
+
+EOF
+
 # DEFAULT VALUES HERE -- IF SET YOU WILL NOT GET PROPMTED
 # These are all the possible settings...
 #-- hostname=arch-test
@@ -353,10 +359,11 @@ if [ "${configure_wifi}" = true ]; then
 		#arch-chroot /mnt systemctl enable wpa_supplicant.service
 		arch-chroot /mnt systemctl enable wpa_supplicant@${wifi_net}
 	else
-		echo
-		echo "WARNING: WiFi device ${wifi_net} does not exist!"
-		echo "WARNING: Configuring but not enabling WiFi"
-		echo
+		echo "- WARNING: WiFi device ${wifi_net} does not exist!" >> /tmp/bootstrap.txt
+		echo "  Configuring but not enabling WiFi" >> /tmp/bootstrap.txt
+		echo  >> /tmp/bootstrap.txt
+		echo " 	# systemctl enable wpa_supplicant@${wifi_net}" >> /tmp/bootstrap.txt
+		echo >> /tmp/bootstrap.txt
 	fi
 fi
 
@@ -447,5 +454,8 @@ arch-chroot /mnt ln -s /usr/bin/vim /usr/bin/vi
 # umount ${part_boot}
 # umount ${part_root}
 
+cat /tmp/bootstrap.txt
+
 echo ""
 echo "done!"
+

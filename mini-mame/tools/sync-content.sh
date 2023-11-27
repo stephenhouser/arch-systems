@@ -15,6 +15,10 @@ for system in ${systems} ; do
 			ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
 		done
 	done
+
+	echo ""
+	echo ""
+	echo ""
 done
 
 # Link content to current versions...

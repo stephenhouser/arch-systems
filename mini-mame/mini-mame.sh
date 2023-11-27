@@ -140,6 +140,9 @@ if [ "${firmware}" == "UEFI" ]; then
 fi
 
 # Done.
+cat /tmp/bootstrap.txt
+
 echo ""
 echo "Mini-MAME setup complete. Reboot now."
 echo ""
+
