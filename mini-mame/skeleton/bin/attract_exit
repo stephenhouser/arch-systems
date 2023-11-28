@@ -22,11 +22,5 @@ case ${dialog_code} in
         255)
                 echo Shutdown...
 				# TODO: Update this to shut the system down
-				hyprctl dispatch exit
                 ;;
 esac
-~
-~
-~
-~
-~

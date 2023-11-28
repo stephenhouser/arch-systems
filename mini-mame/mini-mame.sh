@@ -52,7 +52,8 @@ arch-chroot /mnt pacman --noconfirm -S \
 
 # Wayland
 arch-chroot /mnt pacman --noconfirm -S \
-	wayland hyprland kitty
+	wayland hyprland \
+	kitty xdialog
 
 # Enable automatic login to the console
 # https://wiki.archlinux.org/index.php/Getty
