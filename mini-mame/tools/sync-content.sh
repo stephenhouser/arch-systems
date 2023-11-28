@@ -46,3 +46,6 @@ done
 #		ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
 #	done
 #fi
+
+# Touch when we last pulled content
+touch ~/content.timestamp

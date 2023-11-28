@@ -1,0 +1,3 @@
+#!/bin/bash
+# Start ScummVM games using local config
+exec /usr/bin/scummvm -c $HOME/scummvm/scummvm.ini $*

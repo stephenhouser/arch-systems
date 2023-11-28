@@ -38,13 +38,21 @@ cp /mnt/etc/pacman.conf /tmp/pacman.conf
 awk '/^#\[multilib\]$/ {sub("#",""); print; getline; sub("#",""); print; next;} 1' < /tmp/pacman.conf > /mnt/etc/pacman.conf
 arch-chroot /mnt pacman -Syy --noconfirm
 
+# Audio and general utils
 arch-chroot /mnt pacman --noconfirm -S \
-	xorg xorg-xinit \
-	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
-	xorg-fonts-misc xterm xorg-mkfontdir \
-	lxde \
 	alsa-utils \
 	fuseiso unzip
+
+# Xorg
+# arch-chroot /mnt pacman --noconfirm -S \
+# 	xorg xorg-xinit \
+# 	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
+# 	xorg-fonts-misc xterm xorg-mkfontdir \
+# 	lxde \
+
+# Wayland
+arch-chroot /mnt pacman --noconfirm -S \
+	wayland hyperland kitty
 
 # Enable automatic login to the console
 # https://wiki.archlinux.org/index.php/Getty

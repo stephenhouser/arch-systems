@@ -1,7 +1,8 @@
-# 
-# Start attract mode to play games
+# .bashrc for mini-mame arcade system
 #
-# - give an option to end at shell when exit. Otherwise logout
+# Start attract mode under Hyprland, Wayland, on Arch Linux
+#
+# Also give an option to enter the shell when attract mode exits
 #
 
 # from skeleton
@@ -16,6 +17,7 @@ alias vi=vim
 
 export PATH="${HOME}/bin:$PATH"
 
+# For when things are being installed and there are no games yet
 if [ ! -d ~/shared ] ; then
 	echo ""
 	echo ""
@@ -25,10 +27,11 @@ if [ ! -d ~/shared ] ; then
 	return 
 fi
 
+# Only run attract mode when we are on the console and not already in a window
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
-	/usr/bin/startx -- -nocursor
+	Hyprland
 
-	clear
+	# Here's where we give the option to exit to the shell
 	echo ""
 	echo ""
 	echo "*** Press RETURN to exit to shell ***"
@@ -48,6 +51,6 @@ if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	done
 
 	if [[ $should_logout -eq 1 ]]; then
-		killall -9 zsh
+		logout
 	fi
 fi
