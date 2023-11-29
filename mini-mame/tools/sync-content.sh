@@ -11,8 +11,10 @@ for system in ${systems} ; do
 	rsync -aiv "${content_src}/${system}/" ~
 
 	for ver in ~/${system}* ; do
+		# fbneo uses MAME artwork
 		[[ ${system} == "fbneo" ]] && system="mame"
 
+		# don't copy to the symlinked current version
 		if [[ "$(basename ${ver})" == "${system}" ]] ; then
 			continue
 		fi
@@ -40,12 +42,9 @@ done
 [ -d ~/daphne ] && rm ~/daphne
 [ -d ~/daphne1.0 ] && ln -s ~/daphne1.0 ~/daphne
 
-#if [ -d ~/fbneo ]; then
-	# ln -s ~/fbneo ~/fbneo
-#	for art in ~/shared/mame/*; do
-#		ln -s "${art}" ~/$(basename ${ver})/$(basename ${art})
-#	done
-#fi
+# fbneo is not versioned the same way as others
+# [ -d ~/fbneo ] && rm ~/fbneo
+# [ -d ~/fbneo1.0 ] && ln -s ~/fbneo1.0 ~/fbneo
 
 # Touch when we last pulled content
 touch ~/content.timestamp
