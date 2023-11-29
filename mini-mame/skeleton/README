@@ -2,5 +2,7 @@
 
 File Locations:
 
-- .config : contains static configurations for software/games
+- ~/.config : contains static configurations for software/games
+    - ~/.mame is linked to ~/.config/mame
+    - ~/.attract is linked to ~/.config/attract
 - .local : contains dynamic high scores, menus, etc.
