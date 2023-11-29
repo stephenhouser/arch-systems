@@ -1,0 +1,6 @@
+# mini-mame setup
+
+File Locations:
+
+- .config : contains static configurations for software/games
+- .local : contains dynamic high scores, menus, etc.
