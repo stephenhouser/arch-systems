@@ -1,10 +1,4 @@
 #!/bin/bash
 # Run a WINE game...
 
-resolution=640x480
-
-hyprctl keyword monitor ",${resolution},auto,auto"
-
-wine $*
-
-hyprctl keyword monitor ",preferred,auto,auto"
+/usr/bin/wine $*

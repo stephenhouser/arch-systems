@@ -1,4 +1,6 @@
 #!/bin/bash
-game=$1
+romfile=$1
 shift
-exec /usr/bin/retroarch -L /usr/lib/libretro/fbneo_libretro.so ~/fbneo/arcade/${game} $*
+
+[[ -f $romfile ]] || romfile=$HOME/fbneo/arcade/${romfile}.zip
+exec /usr/bin/retroarch -L /usr/lib/libretro/fbneo_libretro.so ${romfile} $*

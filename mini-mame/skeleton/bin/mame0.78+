@@ -1,4 +1,6 @@
 #!/bin/bash
-game=$1
+romfile=$1
+[[ -f $romfile ]] || romfile=$HOME/mame0.78+/roms/${romfile}.zip
+
 shift
-exec /usr/bin/retroarch -L /usr/lib/libretro/mame2003_plus_libretro.so ~/mame0.78+/roms/${game} $*
+exec /usr/bin/retroarch -L /usr/lib/libretro/mame2003_plus_libretro.so ${romfile} $*
