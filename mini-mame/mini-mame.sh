@@ -44,11 +44,11 @@ arch-chroot /mnt pacman --noconfirm -S \
 	fuseiso unzip
 
 # Xorg
-# arch-chroot /mnt pacman --noconfirm -S \
-# 	xorg xorg-xinit \
-# 	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
-# 	xorg-fonts-misc xterm xorg-mkfontdir \
-# 	lxde \
+arch-chroot /mnt pacman --noconfirm -S \
+	xorg xorg-xinit \
+	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
+	xorg-fonts-misc xterm xorg-mkfontdir \
+	lxde \
 
 # Wayland
 arch-chroot /mnt pacman --noconfirm -S \

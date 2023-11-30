@@ -30,6 +30,7 @@ fi
 # Only run attract mode when we are on the console and not already in a window
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	Hyprland
+	startx -- -nocursor
 
 	# Here's where we give the option to exit to the shell
 	echo ""
