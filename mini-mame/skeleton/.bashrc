@@ -17,6 +17,14 @@ alias vi=vim
 
 export PATH="${HOME}/bin:$PATH"
 
+# Unmute ALSA Audio...
+amixer sset Master unmute
+amixer sset Master '100%'
+amixer sset Speaker unmute
+amixer sset Speaker '100%'
+amixer sset Headphone unmute
+amixer sset Headphone '100%'
+
 # Only run attract mode when we are on the console and not already in a window
 if [[ ! ${DISPLAY} && ${XDG_VTNR} -eq 1 ]]; then
 	#startx -- -nocursor
