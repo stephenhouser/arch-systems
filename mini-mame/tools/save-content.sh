@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Untested, don't run this"
+exit
+
 function sync() {
 	sudo rsync -v --progress --modify-window=1 --update --recursive --no-links --times "$1" "$2"
 }

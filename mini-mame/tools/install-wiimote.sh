@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 # Bluetooth for Wiimote as lightgun
+
+echo "Untested, don't run this"
+exit
+
+
 #
 # https://wiki.archlinux.org/index.php/XWiimote#Connect_the_Wii_Remote
 sudo pacman --noconfirm -S bluez bluez-utils bluez-plugins

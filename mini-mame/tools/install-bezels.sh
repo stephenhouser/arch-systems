@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Untested, don't run this"
+exit
+
 BP_DIR=~/src/bezelproject-MAME
 
 echo ""
