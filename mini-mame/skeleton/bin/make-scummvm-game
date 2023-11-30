@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# ScummVM .ini game file creator.
+#
+# Takes a ScummVM game name (ex freddi2), extracts that game from the
+# global ~/.config/scummvm/scummvm.ini configuration along with the
+# general ScummVM configuration information, and saves it to a "save" file
+# in ~/.local/share/scummvm/GAME.ini
+#
+# This ~/.local version is what should be used to launch the game with ScummVM
+#
+# Ex: scummvm -c ~/.local/share/scummvm/freddi2.ini
+#
+# ScummVM saves game state in the .ini file that was used to launch the game
+# By creating a .ini under .local we can save individual game states
+# separate from the configuration file. That's what this facilitates
+#
 import configparser
 import os
 import sys
