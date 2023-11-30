@@ -13,7 +13,7 @@ dialog_code=$?
 case ${dialog_code} in
         0)
                 echo Start a shell
-				exec kitty
+				exec xterm
                 ;;
         1)
                 echo Restart

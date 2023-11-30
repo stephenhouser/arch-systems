@@ -41,19 +41,19 @@ arch-chroot /mnt pacman -Syy --noconfirm
 # Audio and general utils
 arch-chroot /mnt pacman --noconfirm -S \
 	alsa-utils \
-	fuseiso unzip
+	fuseiso unzip xdialog
 
 # Xorg
 arch-chroot /mnt pacman --noconfirm -S \
 	xorg xorg-xinit \
 	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
 	xorg-fonts-misc xterm xorg-mkfontdir \
-	lxde \
+	lxde
 
 # Wayland
-arch-chroot /mnt pacman --noconfirm -S \
-	wayland hyprland \
-	kitty xdialog
+# arch-chroot /mnt pacman --noconfirm -S \
+# 	wayland hyprland \
+# 	kitty
 
 # Enable automatic login to the console
 # https://wiki.archlinux.org/index.php/Getty
