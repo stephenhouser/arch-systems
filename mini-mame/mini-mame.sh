@@ -49,12 +49,6 @@ arch-chroot /mnt pacman --noconfirm -S \
 	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
 	xorg-fonts-misc xterm xorg-mkfontdir \
 	openbox
-	# removed: lxde
-
-# Wayland, not quite where I want it to be.
-# arch-chroot /mnt pacman --noconfirm -S \
-# 	wayland hyprland \
-# 	kitty
 
 # Enable automatic login to the console
 # https://wiki.archlinux.org/index.php/Getty
