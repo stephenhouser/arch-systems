@@ -1,4 +1,9 @@
 #!/bin/bash
 # Start ScummVM game using default ScummVM system
 
-exec /usr/bin/scummvm $*
+# Where game save .ini files should be
+SCUMMVM_LOCAL=~/.local/share/scummvm
+
+game=$1
+[[ -f ${SCUMMVM_LOCAL}/${game}.ini ]] || make-scummvm-game ${game}
+exec /usr/bin/scummvm -c ${SCUMMVM_LOCAL}/${game}.ini ${game}

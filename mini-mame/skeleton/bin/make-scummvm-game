@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+import configparser
+import os
+import sys
+
+CONFIG = os.path.expanduser("~/.config/scummvm/scummvm.ini")
+LOCAL  = os.path.expanduser("~/.local/share/scummvm")
+
+if len(sys.argv) != 2:
+    print("ERROR: Requires a game name")
+    sys.exit()
+                      
+config = configparser.ConfigParser()
+config.read(CONFIG)
+
+game=sys.argv[1]
+if game not in config:
+    print(f"ERROR: Game not present in {CONFIG}")
+    sys.exit()
+
+local = configparser.ConfigParser()
+local['scummvm'] = config['scummvm']
+
+local[game] = config[game]
+
+save_file_name = os.path.join(LOCAL, game + ".ini")
+with open(save_file_name, 'w') as configfile:
+    local.write(configfile)
