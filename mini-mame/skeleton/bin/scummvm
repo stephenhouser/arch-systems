@@ -1,4 +1,4 @@
 #!/bin/bash
-# Start ScummVM game
+# Start ScummVM game using default ScummVM system
 
 exec /usr/bin/scummvm $*
