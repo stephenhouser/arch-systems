@@ -1,5 +1,3 @@
-# XWindows resources
-
 xterm*background: black
 xterm*foreground: white
 xterm*faceName: Monospace
