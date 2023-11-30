@@ -1,5 +1,6 @@
 #!/bin/bash
-# Launch and maintain our frontend
+# Launch and maintain arcade system frontend
+
 # When we exit give a few options...
 # 	1. Let it timeout and we shut down the computer
 #	2. Start a shell (within X) for debugging

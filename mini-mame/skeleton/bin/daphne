@@ -1,2 +1,4 @@
 #!/bin/bash
+# Start Daphne Laser Disc game
+
 DAPHNE_USER=~/daphne exec /usr/bin/daphne -fullscreen $*

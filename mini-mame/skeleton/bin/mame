@@ -1,2 +1,4 @@
 #!/bin/bash
+# Start emulated MAME game using the default MAME version
+
 exec /usr/bin/mame $*

@@ -1,4 +1,6 @@
 #!/bin/bash
-# Run a WINE game...
+# Start wine game...
+
+# TODO: Setup WINPREFIX= to launch games from if I want to keep them separate
 
 /usr/bin/wine $*

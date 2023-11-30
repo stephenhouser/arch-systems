@@ -1,4 +1,6 @@
 #!/bin/bash
+# Start emulated MAME game using retroarch and MAME 0.78+ (MAME 2003 plus)
+
 romfile=$1
 [[ -f $romfile ]] || romfile=$HOME/mame0.78+/roms/${romfile}.zip
 

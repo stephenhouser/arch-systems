@@ -1,4 +1,8 @@
 #!/bin/bash
-game=$1
+# Start ScummVM game using libretro ScummVM core
+
+romfile=$1
+[[ -f $romfile ]] || romfile=$HOME/scummvm/games/${romfile}/${romfile}.scummvm
+
 shift
-exec /usr/bin/retroarch -L /usr/lib/libretro/scummvm_libretro.so ~/scummvm/games/${game}/${game}.scummvm $* >> ~/scummvm/scummvm.log
+exec /usr/bin/retroarch -L /usr/lib/libretro/scummvm_libretro.so ${romfile} $* 

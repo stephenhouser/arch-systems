@@ -1,4 +1,6 @@
 #!/bin/bash
+# Start fbneo emulated MAME game
+
 romfile=$1
 shift
 
