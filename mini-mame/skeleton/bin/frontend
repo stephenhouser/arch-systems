@@ -1,14 +1,18 @@
 #!/bin/bash
 # Launch and maintain our frontend
-#  - restart if chosen
-#  - start a shell on exit if asked
-#  - restart
-
-#result=$(for i in 20 40 60 80 100 ; do echo $i; sleep 1; done | Xdialog --title "Exit" --timeout 5 --guage "Restart in 5 seconds" 20 80)
+# When we exit give a few options...
+# 	1. Let it timeout and we shut down the computer
+#	2. Start a shell (within X) for debugging
+#	3. Reboot the computer
+#
+# The default is to do nothing and the computer will shut down
 
 while true ; do
 
 	/usr/bin/attract
+
+	# TODO: Put in a countdown timer...
+	#result=$(for i in 20 40 60 80 100 ; do echo $i; sleep 1; done | Xdialog --title "Exit" --timeout 5 --guage "Restart in 5 seconds" 20 80)
 
 	# when we exit, see what I want to do...
 	result=$(Xdialog --title "Exiting..." \
@@ -20,17 +24,17 @@ while true ; do
 	dialog_code=$?
 	case ${dialog_code} in
 			0)
-					echo Start a shell
+					echo "Start a debug shell"
 					xterm
 					;;
 			1)
-					echo Restart (logout and back in)
+					echo "Restart"
 					reboot
 					;;
 			255)
-					echo Shutdown...
+					echo "Shutdown..."
 					# TODO: Update this to shut the system down
-					logout
+					shutdown -h now
 					;;
 	esac
 done

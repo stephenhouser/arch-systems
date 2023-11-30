@@ -22,8 +22,7 @@ xset m 5/2 0	# tweak mouse
 #xterm -geometry 80x43+0+0 -name login
 
 # Start attract mode front end
-#/usr/bin/attract
-
 exec ~/bin/frontend
+
 # for troublshooting, can exec lxde and get full window system
 #exec /usr/bin/startlxde
