@@ -6,6 +6,7 @@
 #	3. Reboot the computer
 #
 # The default is to do nothing and the computer will shut down
+#
 
 while true ; do
 

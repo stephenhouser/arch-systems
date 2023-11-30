@@ -18,11 +18,9 @@ xset -dpms		# disable monitor power management
 xset s off		# disable screen saver
 xset m 5/2 0	# tweak mouse
 
-# start some nice programs when nothing else was specified
-#xterm -geometry 80x43+0+0 -name login
+# Start openbox window manager, but don't put it in control
+/usr/bin/openbox &
 
-# Start attract mode front end
+# Start front end, exec lets it control when we exit X11
+# This also lets you `killall frontend` to terminate X11
 exec ~/bin/frontend
-
-# for troublshooting, can exec lxde and get full window system
-#exec /usr/bin/startlxde

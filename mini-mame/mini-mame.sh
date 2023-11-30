@@ -48,9 +48,10 @@ arch-chroot /mnt pacman --noconfirm -S \
 	xorg xorg-xinit \
 	xf86-video-ati xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-fbdev \
 	xorg-fonts-misc xterm xorg-mkfontdir \
-	lxde
+	openbox
+	# removed: lxde
 
-# Wayland
+# Wayland, not quite where I want it to be.
 # arch-chroot /mnt pacman --noconfirm -S \
 # 	wayland hyprland \
 # 	kitty
