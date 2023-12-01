@@ -870,12 +870,12 @@ function on_signal(str) {
 // 
 // *** System games count
 //
-main_infos <- {};
-if( !file_exist("game-count.stats") ) {
-	fe.overlay.splash_message("Counting games, please wait...")
-	print("Created the game-count.stats file!\n");
-	refresh_stats();
-}
+//main_infos <- {};
+//if( !file_exist("game-count.stats") ) {
+//	fe.overlay.splash_message("Counting games, please wait...")
+//	print("Created the game-count.stats file!\n");
+//	refresh_stats();
+//}
 
 main_infos <- LoadStats();
 
