@@ -6,7 +6,6 @@ import os
 import csv
 
 GAMES_FILE = os.path.expanduser("~/.config/wine/wine.cfg")
-WINE_ROOT = os.path.expanduser("~/wine/drive_c")
 
 if len(sys.argv) != 2:
     print("ERROR: Requires a game name")
@@ -20,7 +19,8 @@ with open(GAMES_FILE) as csvfile:
     gamereader = csv.DictReader(csvfile, delimiter=';')
     for game in gamereader:
         if game['Name'] == game_name:
-            exe = os.path.join(WINE_ROOT, game['Executable'])
-            os.system(f"/usr/bin/wine '{exe}'")
+            prefix = os.path.expanduser(game['Prefix'])
+            exe = os.path.join(prefix, game['Executable'])
+            os.system(f"WINEPREFIX={prefix} /usr/bin/wine '{exe}'")
 
 print(f"Game {game_name} not found.")
