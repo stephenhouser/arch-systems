@@ -90,8 +90,9 @@ souledge;Soul Edge Ver. II;mame;;1996;Namco;;2;0;joystick (8-way),joystick (8-wa
 ace;Space Ace;daphne;;1984;Advanced Microcomputer Systems;;;;;;;;;;;;;;
 sae;Space Ace Enhancement;daphne;;;;;;;;;;;;;;;;;
 sdbugman;Scooby Doo, The Glowing Bug Man;wine;;;;;;;;;;;;;;;;;
-sdsphinx;Scooby Doo Jinx at the Sphinx;wine;;;;;;;;;;;;;;;;;
+sddragon;Scooby Doo, The Scary Stone Dragon;wine;;;;;;;;;;;;;;;;;
 sdphantom;Scooby Doo, Phantom of the Knight;wine;;;;;;;;;;;;;;;;;
+sdsphinx;Scooby Doo, Jinx at the Sphinx;wine;;;;;;;;;;;;;;;;;
 spacduel;Space Duel;mame;;1980;Atari;;2;0;joystick (2-way),joystick (2-way);good;1;vector;;;;3;;;;
 invadpt2;Space Invaders Part II (Taito, bigger ROMs);mame;;1979;Taito;;2;270;joystick (2-way),joystick (2-way);imperfect;1;raster;;;;1;;;;
 invaders;Space Invaders / Space Invaders M;mame;;1978;Taito / Midway;;2;270;joystick (2-way),joystick (2-way);good;1;raster;;;;1;;;;
