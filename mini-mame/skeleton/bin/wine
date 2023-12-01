@@ -12,20 +12,15 @@ if len(sys.argv) != 2:
     print("ERROR: Requires a game name")
     sys.exit()
 
-# game = (Name, Title, Emulator;Executable)
 
-game = sys.argv[1]
+game_name = sys.argv[1]
+executable = None
 with open(GAMES_FILE) as csvfile:
-    gamereader = csv.reader(csvfile, delimiter=';')
-    header = next(gamereader)
+    # (Name, Title, Emulator;Executable)
+    gamereader = csv.DictReader(csvfile, delimiter=';')
     for game in gamereader:
-        if game[0] == game:
-            executable = game[3]
+        if game['Name'] == game_name:
+            exe = os.path.join(WINE_ROOT, game['Executable'])
+            os.system(f"/usr/bin/wine '{exe}'")
 
-if executable:
-    exe = os.path.join(WINE_ROOT, executable)
-    os.system(f"/usr/bin/wine {exe}")
-
-#!/bin/bash
-# TODO: Setup WINPREFIX= to launch games from if I want to keep them separate
-#/usr/bin/wine $*
+print(f"Game {game_name} not found.")
