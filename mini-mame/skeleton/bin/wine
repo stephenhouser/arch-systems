@@ -1,6 +1,31 @@
-#!/bin/bash
+#!/usr/bin/env python3
 # Start wine game...
 
-# TODO: Setup WINPREFIX= to launch games from if I want to keep them separate
+import sys
+import os
+import csv
 
-/usr/bin/wine $*
+GAMES_FILE = os.path.expanduser("~/.config/wine/wine.cfg")
+WINE_ROOT = os.path.expanduser("~/wine/drive_c")
+
+if len(sys.argv) != 2:
+    print("ERROR: Requires a game name")
+    sys.exit()
+
+# game = (Name, Title, Emulator;Executable)
+
+game = sys.argv[1]
+with open(GAMES_FILE) as csvfile:
+    gamereader = csv.reader(csvfile, delimiter=';')
+    header = next(gamereader)
+    for game in gamereader:
+        if game[0] == game:
+            executable = game[3]
+
+if executable:
+    exe = os.path.join(WINE_ROOT, executable)
+    os.system(f"/usr/bin/wine {exe}")
+
+#!/bin/bash
+# TODO: Setup WINPREFIX= to launch games from if I want to keep them separate
+#/usr/bin/wine $*
