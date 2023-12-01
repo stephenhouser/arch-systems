@@ -27,6 +27,7 @@ with open(GAMES_FILE) as csvfile:
             exe = os.path.join(prefix, game['Executable'])
 
             env['WINEPREFIX'] = WINE_PREFIX
+            os.chdir(os.dirname(exe))
             os.spawnvpe(os.P_WAIT, WINE_CMD, (WINE_CMD, exe), env)
             sys.exit()
 
