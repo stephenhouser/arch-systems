@@ -5,12 +5,16 @@ import sys
 import os
 import csv
 
+WINE_CMD = "/usr/bin/wine"
+WINE_PREFIX = os.path.expanduser("~/wine")
 GAMES_FILE = os.path.expanduser("~/.config/wine/wine.cfg")
 
 if len(sys.argv) != 2:
     print("ERROR: Requires a game name")
     sys.exit()
 
+env = os.environ
+env['WINEPREFIX'] = WINE_PREFIX
 
 game_name = sys.argv[1]
 executable = None
@@ -21,6 +25,10 @@ with open(GAMES_FILE) as csvfile:
         if game['Name'] == game_name:
             prefix = os.path.expanduser(game['Prefix'])
             exe = os.path.join(prefix, game['Executable'])
-            os.system(f"WINEPREFIX={prefix} /usr/bin/wine '{exe}'")
+
+            env['WINEPREFIX'] = WINE_PREFIX
+            os.spawnvpe(os.P_WAIT, WINE_CMD, (WINE_CMD, exe), env)
+            sys.exit()
 
 print(f"Game {game_name} not found.")
+os.spawnvpe(os.P_WAIT, WINE_CMD, (WINE_CMD, *sys.argv[1:]), env)
