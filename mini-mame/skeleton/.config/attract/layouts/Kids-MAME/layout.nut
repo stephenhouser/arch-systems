@@ -877,7 +877,7 @@ function on_signal(str) {
 //	refresh_stats();
 //}
 
-main_infos <- LoadStats();
+//main_infos <- LoadStats();
 
 function system_stats( ttype, var, ttime ) {
 	local curr_sys;
